@@ -9,7 +9,7 @@
 ## Description
 
 ## Related Tickets & Documents
-- Monday Task #
+- Monday Task URL:
 
 ## QA Instructions, Screenshots, Recordings
 
