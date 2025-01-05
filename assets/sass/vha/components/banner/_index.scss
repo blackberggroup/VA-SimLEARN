@@ -1,0 +1,17 @@
+@use "uswds-core" as *;
+@use "vha/variables" as *;
+
+.usa-banner {
+    background-color: $theme-simlearn-primary-dark;
+    
+    &__inner {
+        padding: 0;
+    }
+    
+    &__header-action {
+        @include at-media(mobile) {    
+            font-size: .8rem;
+        }
+    }
+    
+}

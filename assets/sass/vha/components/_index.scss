@@ -4,10 +4,12 @@ Component Index SCSS
 ----------------------------------------
 */
 
+@forward "banner";
 @forward "button";
 @forward "card";
 @forward "header";
 @forward "footer";
 @forward "navigation";
+@forward "modal";
 @forward "video";
 @forward "back-to-top";

@@ -7,8 +7,7 @@ in the form $setting: value,
 ----------------------------------------
 */
 
-
- @use "uswds-core" with (
+ @use "uswds-core" as core with (
   $theme-utility-breakpoints: (
     'card':              false,   // 160px
     'card-lg':           false,   // 240px
@@ -21,21 +20,26 @@ in the form $setting: value,
     'widescreen':        true,   // 1400px
   ),
 
+  
+
   $theme-show-compile-warnings: false,
   $theme-show-notifications: false,
   $theme-grid-container-max-width: "widescreen",
-
   
   /* ----------------------------------------
   TYPOGRAPHY
   ---------------------------------------- */
   $theme-font-path: "../uswds/fonts",
+
   /* ----------------------------------------
   HEADER
   ---------------------------------------- */
   $theme-image-path: "../uswds/img",
   $theme-header-max-width: "widescreen",
   $theme-banner-max-width: "widescreen",
+
+  $theme-banner-background-color: "primary",
+  $theme-banner-link-color: "base-lightest",
 
   /* ----------------------------------------
   FOOTER
@@ -45,4 +49,5 @@ in the form $setting: value,
   $theme-identifier-max-width: "widescreen",
 
   $theme-card-border-width: 1px,
+  
 );

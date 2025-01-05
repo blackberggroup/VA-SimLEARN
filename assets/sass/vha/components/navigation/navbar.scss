@@ -1,0 +1,56 @@
+@use "uswds-core" as *;
+@use "vha/variables" as *;
+
+.usa-nav__primary>.usa-nav__primary-item>a {
+    @include at-media(desktop) {
+        padding: 2rem 1rem;
+    }
+
+}
+
+.usa-nav__primary button {
+    @include at-media(desktop) {
+        padding: 2rem 1rem;
+    }
+
+}
+
+@include at-media(desktop) {
+    .usa-header--basic .usa-nav__link::after, .usa-header--basic .usa-nav__primary-item>.usa-current::after {
+        transition: .3s ease;
+        opacity: 0;
+        content: '';
+        display: block;
+        position: absolute;
+        height: .25rem;
+        left: 1rem;
+        right: 1rem;
+        bottom: -.25rem;
+        background-color: $theme-simlearn-primary;
+        box-shadow: 0px 1px 8px rgba(0, 94, 255, 0.7);
+        border-radius: 6px;
+    }
+    .usa-header--basic .usa-nav__link:hover::after, .usa-header--basic .usa-nav__primary-item>.usa-current::after {
+        opacity: 1;
+    }
+}
+
+
+@supports ((-webkit-mask:url()) or (mask:url())) {
+    .usa-nav__primary button[aria-expanded=false] span::after {
+        -webkit-mask-image: url(../uswds/img/usa-icons/expand_more.svg), linear-gradient(transparent, transparent);
+        mask-image: url(../uswds/img/usa-icons/expand_more.svg), linear-gradient(transparent, transparent);
+    }
+
+    .usa-nav__primary button[aria-expanded=true] span::after {
+        -webkit-mask-image: url(../uswds/img/usa-icons/expand_less.svg), linear-gradient(transparent, transparent);
+        mask-image: url(../uswds/img/usa-icons/expand_less.svg), linear-gradient(transparent, transparent);
+    }    
+}
+    .usa-nav__primary button[aria-expanded=false] span::after {
+        background-image: url(../uswds/img/usa-icons/expand_more.svg);
+    }
+
+    .usa-nav__primary button[aria-expanded=true] span::after {
+        background-image: url(../uswds/img/usa-icons/expand_less.svg);
+    }    

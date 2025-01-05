@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <meta name="description" content="">
   <meta name="keywords" content="">
-  <title>VA Website Template</title>
+  <title>News & Media</title>
 
   <meta property="og:title" content="((TITLE))">
   <meta property="og:url" content="((URL))">
@@ -27,23 +27,23 @@
 
     <!-- SITE WRAPPER - START -->
     <div class="site-wrapper">
-      {% include "banner.liquid" %}
+      {% include "banner.liquid", assetPath: assetPath(page) %}
       {% include "header.liquid",  currentPageUrl: page.url %}
 
         <main>
             <div style="height: 200px;"></div>
-            
+            <p>Asset Path: {% assetPath page %}</p>
 
         </main>
 
-        {% include "footer.html" %}
+        {% include "footer-sub.html" %}
 
     </div>
     <!-- SITE WRAPPER - END -->
 
-    <script src="assets/uswds/js/uswds.min.js"></script>
-    <script src="assets/js/vendors/lazy/jquery.lazy.min.js"></script>
-    <script src="assets/js/functions.js"></script>
+    <script src="../assets/uswds/js/uswds.min.js"></script>
+    <script src="../assets/js/vendors/lazy/jquery.lazy.min.js"></script>
+    <script src="../assets/js/functions.js"></script>
 
 </body>
 

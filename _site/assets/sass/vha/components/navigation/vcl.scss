@@ -1,0 +1,101 @@
+@use "uswds-core" as *;
+@use "vha/variables" as *;
+
+.vcl-button {
+    background-color: $theme-simlearn-primary;
+    color: $theme-simlearn-lightest;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0 .8rem;
+    position: absolute;
+    top: 0;
+    right: 32px;
+    height: 22px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    background-size: auto;
+
+    &__logo {
+        margin-right: .4rem;
+    }
+
+    &__arrow {
+        margin-left: .4rem;
+    }
+
+
+}
+// .vcl-button {
+//     padding: 0 26px 0.8em 10px;
+//     text-align: left;
+//     max-width: 26rem !important;
+//     position: absolute;
+//     top: 0rem;
+//     right: 1rem;
+//     font-size: .9rem;
+//     z-index: 1;
+// }
+@media screen and (max-width: 800px) {
+//     .vcl-button {
+//         display: none;
+//    }
+}
+
+.vcl-modal {
+    max-width: 55rem !important;
+}
+.vcl-modal__title {
+    color: red;
+    padding-left: 41px;
+    background: url(../uswds/img/vcl-logo.png) no-repeat 0;
+    background-position-x: 0;
+    background-position-y: center;
+    background-size: auto auto;
+    background-position: left 5px;
+    background-size: 32px auto;
+    font-size: 1.34rem !important;
+}
+.usa-prose {
+    color: #1b1b1b;
+    li a {
+        color: #1b1b1b;
+        display: block;
+        padding: 1rem 2.4rem;
+        text-decoration: none;
+   }
+}
+.vcl-call {
+    background: url(../uswds/img/usa-icons/phone.svg) no-repeat 0;
+    background-position-x: 0;
+    background-position-y: center;
+    background-size: auto auto;
+    background-position: left 11px;
+    background-size: 32px auto;
+}
+.vcl-text {
+    background: url(../uswds/img/material-icons/vcl-mobile.svg) no-repeat 0;
+    background-position-x: 0;
+    background-position-y: center;
+    background-size: auto auto;
+    background-position: left 11px;
+    background-size: 32px !important;
+}
+.vcl-chat {
+    background: url(../uswds/img/material-icons/vcl-chat.svg) no-repeat 0;
+    background-position-x: 0;
+    background-position-y: center;
+    background-size: auto auto;
+    background-position: left 11px;
+    background-size: 32px auto !important;
+}
+.vcl-tty {
+    background: url(../uswds/img/material-icons/tty.svg) no-repeat 0;
+    background-position-x: 0;
+    background-position-y: center;
+    background-size: auto auto;
+    background-position: left 11px;
+    background-size: 32px auto;
+}
