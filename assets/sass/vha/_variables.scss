@@ -1,6 +1,13 @@
 @use "uswds-core" as *;
 
-$theme-simlearn-primary: #0050D8;
-$theme-simlearn-primary-dark: #0E1D33;
+$theme-primary-lighest: #CCDFFF;
+$theme-primary-light: #669FFF;
+$theme-primary: #0050D8;
+$theme-primary-dark: #00286B;
+$theme-primary-darkest: #0E1D33;
 
-$theme-simlearn-lightest: #{color("base-lightest")};
+$theme-base-lightest: #{color("base-lightest")};
+$theme-base-light: #{color("base-lighter")};
+$theme-base-base: #{color("gray-cool-50")};
+$theme-base-dark: #{color("gray-80")};
+$theme-base-darkest: #{color("gray-90")};
