@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <meta name="description" content="">
   <meta name="keywords" content="">
-  <title>News & Media</title>
+  <title>News & Media | SimLEARN</title>
 
-  <meta property="og:title" content="((TITLE))">
-  <meta property="og:url" content="((URL))">
-  <meta property="og:description" content="((DESCRIPTION))">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="((OG:IMAGE URL))">
+  <meta property="og:title" content="{{ og.default.title }}">
+  <meta property="og:url" content="{{ site.baseUrl }}{{ page.url }}">
+  <meta property="og:description" content="{{ og.default.description }}">
+  <meta property="og:type" content="{{ og.default.type }}">
+  <meta property="og:image" content="{{ og.default.image }}">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="{% assetPath page %}css/styles.css">
@@ -27,23 +27,20 @@
 
     <!-- SITE WRAPPER - START -->
     <div class="site-wrapper">
-      {% include "banner.liquid", assetPath: assetPath(page) %}
+      {% include "banner.liquid" %}
       {% include "header.liquid",  currentPageUrl: page.url %}
 
         <main>
             <div style="height: 200px;"></div>
-            <p>Asset Path: {% assetPath page %}</p>
 
         </main>
 
-        {% include "footer-sub.html" %}
+        {% include "footer.liquid" %}
 
     </div>
     <!-- SITE WRAPPER - END -->
 
-    <script src="../assets/uswds/js/uswds.min.js"></script>
-    <script src="../assets/js/vendors/lazy/jquery.lazy.min.js"></script>
-    <script src="../assets/js/functions.js"></script>
+    {% include "scripts.liquid" %}
 
 </body>
 
