@@ -5,7 +5,7 @@
         <header class="usa-banner__header">
           <div class="usa-banner__inner">
             <div class="grid-col-auto">
-              <img aria-hidden="true" class="usa-banner__header-flag" src="{{ assetPath }}assets/uswds/img/us_flag_small.png" alt="US Flag icon" />
+              <img aria-hidden="true" class="usa-banner__header-flag" src="{% assetPath %}assets/uswds/img/us_flag_small.png" alt="US Flag icon" />
             </div>
             <div class="grid-col-fill tablet:grid-col-auto" aria-hidden="true">
               <p class="usa-banner__header-text">
@@ -22,7 +22,7 @@
         <div class="usa-banner__content usa-accordion__content" id="gov-banner-default-default">
           <div class="grid-row grid-gap-lg">
             <div class="usa-banner__guidance tablet:grid-col-6">
-              <img class="usa-banner__icon usa-media-block__img" src="{{ assetPath }}assets/uswds/img/icon-dot-gov.svg" role="img" alt="government building icon"
+              <img class="usa-banner__icon usa-media-block__img" src="{% assetPath %}assets/uswds/img/icon-dot-gov.svg" role="img" alt="government building icon"
                 aria-hidden="true" />
               <div class="usa-media-block__body">
                 <p>
@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="usa-banner__guidance tablet:grid-col-6">
-              <img class="usa-banner__icon usa-media-block__img" src="{% assetPath page %}assets/uswds/img/icon-https.svg" role="img" alt="lock icon" aria-hidden="true" />
+              <img class="usa-banner__icon usa-media-block__img" src="{% assetPath %}assets/uswds/img/icon-https.svg" role="img" alt="lock icon" aria-hidden="true" />
               <div class="usa-media-block__body">
                 <p>
                   <strong>Secure .gov websites use HTTPS</strong><br />A
@@ -55,9 +55,9 @@
         </div>
       </div>
       <a href="#example-modal-1" class="vcl-button display-none tablet-lg:display-flex" aria-controls="example-modal-1" data-open-modal>
-        <img src="{{ assetPath }}assets/uswds/img/vcl-logo-white.svg" width="16" height="16" alt="Veterans Crisis Line logo" class="vcl-button__logo" />
+        <img src="{% assetPath %}assets/uswds/img/vcl-logo-white.svg" width="16" height="16" alt="Veterans Crisis Line logo" class="vcl-button__logo" />
         Talk to the Veterans Crisis Line
-        <img src="{{ assetPath }}assets/uswds/img/usa-icons/chevron_right-white.svg" width="16" height="16" alt="arrow pointing right" class="vcl-button__arrow" />
+        <img src="{% assetPath %}assets/uswds/img/usa-icons/chevron_right-white.svg" width="16" height="16" alt="arrow pointing right" class="vcl-button__arrow" />
       </a>
     </div>
   </section>
