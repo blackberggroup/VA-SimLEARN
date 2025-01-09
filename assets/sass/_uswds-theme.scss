@@ -32,13 +32,17 @@ in the form $setting: value,
   $theme-font-path: "../uswds/fonts",
 
   /* ----------------------------------------
+  BANNER
+  ---------------------------------------- */
+  $theme-banner-background-color: "primary-dark",
+  $theme-banner-link-color: "base-lightest",
+
+  /* ----------------------------------------
   HEADER
   ---------------------------------------- */
   $theme-image-path: "../uswds/img",
   $theme-header-max-width: "widescreen",
   $theme-banner-max-width: "widescreen",
-
-  $theme-banner-link-color: "base-lightest",
 
   /* ----------------------------------------
   FOOTER
