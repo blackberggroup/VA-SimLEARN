@@ -35,7 +35,7 @@ jobs:
         password: ${{ secrets.ftp_password }}
         port: 21
         local-dir: ./_site/
-        server-dir: dev-innovation.bgsandbox.com/simlearn/
+        server-dir: innovation.bgsandbox.com/simlearn/
         exclude: |
           **/.DS_Store
           **/.git*
