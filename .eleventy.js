@@ -8,16 +8,15 @@ module.exports = function (eleventyConfig) {
   const pathPrefix = isProduction ? "/simlearn/" : "/";
 
   // Passthrough copy for assets
-  eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy({
+    "assets": "assets", // Copy assets to the same directory
+    "!src/sass/**": false, // Explicitly exclude the SCSS directory
+  });
 
   // Shortcode for asset paths
   eleventyConfig.addShortcode("assetPath", function () {
     return pathPrefix;
   });
-
-  // Debugging
-  console.log("Environment:", isProduction ? "Production" : "Development");
-  console.log("Path Prefix:", pathPrefix);
 
   // Return Eleventy configuration
   return {
