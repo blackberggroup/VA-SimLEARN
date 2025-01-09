@@ -6,14 +6,29 @@ on:
       - main
 
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build-and-deploy:
+    name: 🎉 Build and Deploy
+    if: contains(github.event.pull_request.labels.*.name, 'ready for review')
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
     
-    - name: 📂 Sync files
+    - name: 🔧 Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: 📦 Install dependencies
+      run: npm install
+
+    - name: 🛠️ Build with Eleventy
+      run: |
+        NODE_ENV=production npx @11ty/eleventy
+      env:
+        PATH_PREFIX: /simlearn/ # Set production prefix
+
+    - name: 📂 Sync files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.bgsandbox.com
