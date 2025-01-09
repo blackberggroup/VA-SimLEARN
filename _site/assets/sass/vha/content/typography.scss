@@ -1,4 +1,6 @@
+@use "vha/variables" as *;
 @import "../../../../node_modules/rfs/scss";
+
 
 p {
     font-size: 1rem;
@@ -21,7 +23,6 @@ h4, .h4 {
     @include font-size(18px);
 }
 
-.heading-subtitle {
-    font-weight: bold;
-    color: var(--red-8);
+.usa-link {
+    color: $theme-primary;
 }

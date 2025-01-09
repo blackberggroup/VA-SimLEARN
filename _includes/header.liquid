@@ -25,7 +25,7 @@
         <li class="usa-nav__primary-item">
           <button
             type="button"
-            class="usa-accordion__button usa-nav__link {% if currentPageUrl == '/about-us/' %}usa-current{% endif %}"
+            class="usa-accordion__button usa-nav__link"
             aria-expanded="false"
             aria-controls="basic-nav-section-one"
           >
@@ -33,17 +33,17 @@
           </button>
           <ul id="basic-nav-section-one" class="usa-nav__submenu">
             <li class="usa-nav__submenu-item">
-              <a href="javascript:void(0);">
+              <a href="/about-us/" class="{% if currentPageUrl == '/about-us/' %}usa-current{% endif %}">
                 <span>About SimLEARN</span>
               </a>
             </li>
             <li class="usa-nav__submenu-item">
-              <a href="javascript:void(0);">
+              <a href="/about-us/simlearn-leadership/" class="{% if currentPageUrl == '/about-us/simlearn-leadership' %}usa-current{% endif %}">
                 <span>SimLEARN Leadership Team</span>
               </a>
             </li>
             <li class="usa-nav__submenu-item">
-              <a href="javascript:void(0);">
+              <a href="/about-us/contact-us/" class="{% if currentPageUrl == '/about-us/contact-us/' %}usa-current{% endif %}">
                 <span>Contact Us</span>
               </a>
             </li>
@@ -65,65 +65,54 @@
           </button>
           <div
             id="basic-mega-nav-section-two"
-            class="usa-nav__submenu usa-megamenu"
+            class="usa-nav__submenu usa-megamenu padding-0"
           >
             <div class="grid-row grid-gap-4">
-              <div class="usa-col">
-                <ul class="usa-nav__submenu-list">
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                </ul>
+              <div class="grid-col-12 desktop:grid-col-4">
+                <div class="usa-nav__portfolio">
+                  <h3 class="usa-nav__portfolio-title">SimLEARN</h3>
+                  <p class="usa-nav__portfolio-subtitle margin-top-0">Simulation Validation, Evaluation, and Testing</p>
+                  <a href="/portfolio/simlearn/" class="usa-link" aria-label="View more information about SimLEARN">View SimLEARN</a>
+                </div>
               </div>
-              <div class="usa-col">
-                <ul class="usa-nav__submenu-list">
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);"
-                      >&lt;A very long navigation link that goes onto two
-                      lines&gt;</a
-                    >
-                  </li>
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                </ul>
+              <div class="grid-col-12 desktop:grid-col-4">
+                <div class="usa-nav__portfolio">
+                  <h3 class="usa-nav__portfolio-title">REdI</h3>
+                  <p class="usa-nav__portfolio-subtitle margin-top-0">Resuscitation Education and Innovation</p>
+                  <a href="/portfolio/aco/" class="usa-link" aria-label="View more information about ACO">View REdI</a>
+                </div>
               </div>
-              <div class="usa-col">
-                <ul class="usa-nav__submenu-list">
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="usa-col">
-                <ul class="usa-nav__submenu-list">
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                  <li class="usa-nav__submenu-item">
-                    <a href="javascript:void(0);">&lt;Navigation link&gt;</a>
-                  </li>
-                </ul>
+              <div class="grid-col-12 desktop:grid-col-4">
+                <div class="usa-nav__portfolio">
+                  <h3 class="usa-nav__portfolio-title">LM</h3>
+                  <p class="usa-nav__portfolio-subtitle margin-top-0">Learning Management</p>
+                  <a href="/portfolio/aco/" class="usa-link" aria-label="View more information about ACO">View LM</a>
+                </div>                
               </div>
             </div>
+            <div class="grid-row grid-gap-4">
+              <div class="grid-col-12 desktop:grid-col-4">
+                <div class="usa-nav__portfolio">
+                  <h3 class="usa-nav__portfolio-title">ACO</h3>
+                  <p class="usa-nav__portfolio-subtitle margin-top-0">Assessment, Collaboration and Outreach</p>
+                  <a href="/portfolio/aco/" class="usa-link" aria-label="View more information about ACO">View ACO</a>
+                </div>
+              </div>
+              <div class="grid-col-12 desktop:grid-col-4">
+                <div class="usa-nav__portfolio">
+                  <h3 class="usa-nav__portfolio-title">CTE</h3>
+                  <p class="usa-nav__portfolio-subtitle margin-top-0">Clinical Training and Engagement</p>
+                  <a href="/portfolio/cte/" class="usa-link" aria-label="View more information about CTE">View CTE</a>
+                </div>
+              </div>
+              <div class="grid-col-12 desktop:grid-col-4">
+                <div class="usa-nav__portfolio">
+                  <h3 class="usa-nav__portfolio-title">SO</h3>
+                  <p class="usa-nav__portfolio-subtitle margin-top-0">Support Operations</p>
+                  <a href="/portfolio/so/" class="usa-link" aria-label="View more information about SO">View LM</a>
+                </div>                
+              </div>
+            </div>            
           </div>          
         </li>        
         <li class="usa-nav__primary-item">

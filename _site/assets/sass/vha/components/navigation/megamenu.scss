@@ -1,0 +1,18 @@
+@use "uswds-core" as *;
+@use "vha/variables" as *;
+
+.usa-nav {
+
+    &__portfolio {
+        padding: 40px;
+
+        &-title {
+            margin: 0;
+        }
+    }
+
+}
+
+.usa-megamenu.usa-nav__submenu {
+    padding: 0;
+}
