@@ -5,7 +5,7 @@
     <div class="usa-navbar">
       <div class="usa-logo">
         <em class="usa-logo__text">
-          <a href="{% assetPath %}" title="VA Simlearn">
+          <a href="{{ assetPath }}" title="VA Simlearn">
             VA <span> | SimLEARN</span>
           </a>
         </em>
@@ -14,112 +14,61 @@
     </div>
     <nav aria-label="Primary navigation" class="usa-nav">
       <button type="button" class="usa-nav__close">
-        <img src="{% assetPath %}assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
+        <img src="{{ assetPath }}assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
       </button>
       <ul class="usa-nav__primary usa-accordion">
-        <li class="usa-nav__primary-item">
-          <a href="{% assetPath %}" class="usa-nav-link {% if currentPageUrl == '/' %}usa-current{% endif %}">
-            <span>Home</span>
-          </a>
-        </li>        
-        <li class="usa-nav__primary-item">
-          <button
-            type="button"
-            class="usa-accordion__button usa-nav__link"
-            aria-expanded="false"
-            aria-controls="basic-nav-section-one"
-          >
-            <span>About Us</span>
-          </button>
-          <ul id="basic-nav-section-one" class="usa-nav__submenu">
-            <li class="usa-nav__submenu-item">
-              <a href="{% assetPath %}about-us/" class="{% if currentPageUrl == '/about-us/' %}usa-current{% endif %}">
-                <span>About SimLEARN</span>
+        {% for link in navigation.primaryLinks %}
+          <li class="usa-nav__primary-item">
+            {% if link.submenu %}
+              <button
+                type="button"
+                class="usa-accordion__button usa-nav__link"
+                aria-expanded="false"
+                aria-controls="section-{{ forloop.index }}"
+              >
+                <span>{{ link.label }}</span>
+              </button>
+              <ul id="section-{{ forloop.index }}" class="usa-nav__submenu">
+                {% for sublink in link.submenu %}
+                  <li class="usa-nav__submenu-item">
+                    <a href="{{ assetPath }}{{ sublink.url }}" class="{% if currentPageUrl == sublink.url %}usa-current{% endif %}">
+                      <span>{{ sublink.label }}</span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% elsif link.megaMenu %}
+              <button
+                type="button"
+                class="usa-accordion__button usa-nav__link"
+                aria-expanded="false"
+                aria-controls="mega-menu-{{ forloop.index }}"
+              >
+                <span>{{ link.label }}</span>
+              </button>
+              <div
+                id="mega-menu-{{ forloop.index }}"
+                class="usa-nav__submenu usa-megamenu padding-0"
+              >
+                <div class="grid-row grid-gap-4">
+                  {% for item in link.megaMenu %}
+                    <div class="grid-col-12 desktop:grid-col-4">
+                      <div class="usa-nav__portfolio">
+                        <h3 class="usa-nav__portfolio-title">{{ item.title }}</h3>
+                        <p class="usa-nav__portfolio-subtitle margin-top-0">{{ item.description }}</p>
+                        <a href="{{ assetPath }}{{ item.url }}" class="usa-link" aria-label="View more information about {{ item.title }}">View {{ item.title }}</a>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% else %}
+              <a href="{{ assetPath }}{{ link.url }}" class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
+                <span>{{ link.label }}</span>
               </a>
-            </li>
-            <li class="usa-nav__submenu-item">
-              <a href="{% assetPath %}about-us/simlearn-leadership/" class="{% if currentPageUrl == '/about-us/simlearn-leadership' %}usa-current{% endif %}">
-                <span>SimLEARN Leadership Team</span>
-              </a>
-            </li>
-            <li class="usa-nav__submenu-item">
-              <a href="{% assetPath %}about-us/contact-us/" class="{% if currentPageUrl == '/about-us/contact-us/' %}usa-current{% endif %}">
-                <span>Contact Us</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="usa-nav__primary-item">
-          <a href="{% assetPath %}news-and-media/" class="usa-nav-link {% if currentPageUrl == '/news-and-media/' %}usa-current{% endif %}">
-            <span>News & Media</span>
-          </a>
-        </li>        
-        <li class="usa-nav__primary-item">
-          <button
-            type="button"
-            class="usa-accordion__button usa-nav__link"
-            aria-expanded="false"
-            aria-controls="basic-mega-nav-section-two"
-          >
-            <span>Portfolios</span>
-          </button>
-          <div
-            id="basic-mega-nav-section-two"
-            class="usa-nav__submenu usa-megamenu padding-0"
-          >
-            <div class="grid-row grid-gap-4">
-              <div class="grid-col-12 desktop:grid-col-4">
-                <div class="usa-nav__portfolio">
-                  <h3 class="usa-nav__portfolio-title">SimLEARN</h3>
-                  <p class="usa-nav__portfolio-subtitle margin-top-0">Simulation Validation, Evaluation, and Testing</p>
-                  <a href="{% assetPath %}portfolio/simlearn/" class="usa-link" aria-label="View more information about SimLEARN">View SimLEARN</a>
-                </div>
-              </div>
-              <div class="grid-col-12 desktop:grid-col-4">
-                <div class="usa-nav__portfolio">
-                  <h3 class="usa-nav__portfolio-title">REdI</h3>
-                  <p class="usa-nav__portfolio-subtitle margin-top-0">Resuscitation Education and Innovation</p>
-                  <a href="{% assetPath %}portfolio/redi/" class="usa-link" aria-label="View more information about ACO">View REdI</a>
-                </div>
-              </div>
-              <div class="grid-col-12 desktop:grid-col-4">
-                <div class="usa-nav__portfolio">
-                  <h3 class="usa-nav__portfolio-title">LM</h3>
-                  <p class="usa-nav__portfolio-subtitle margin-top-0">Learning Management</p>
-                  <a href="{% assetPath %}portfolio/lm/" class="usa-link" aria-label="View more information about ACO">View LM</a>
-                </div>                
-              </div>
-            </div>
-            <div class="grid-row grid-gap-4">
-              <div class="grid-col-12 desktop:grid-col-4">
-                <div class="usa-nav__portfolio">
-                  <h3 class="usa-nav__portfolio-title">ACO</h3>
-                  <p class="usa-nav__portfolio-subtitle margin-top-0">Assessment, Collaboration and Outreach</p>
-                  <a href="{% assetPath %}portfolio/aco/" class="usa-link" aria-label="View more information about ACO">View ACO</a>
-                </div>
-              </div>
-              <div class="grid-col-12 desktop:grid-col-4">
-                <div class="usa-nav__portfolio">
-                  <h3 class="usa-nav__portfolio-title">CTE</h3>
-                  <p class="usa-nav__portfolio-subtitle margin-top-0">Clinical Training and Engagement</p>
-                  <a href="{% assetPath %}portfolio/cte/" class="usa-link" aria-label="View more information about CTE">View CTE</a>
-                </div>
-              </div>
-              <div class="grid-col-12 desktop:grid-col-4">
-                <div class="usa-nav__portfolio">
-                  <h3 class="usa-nav__portfolio-title">SO</h3>
-                  <p class="usa-nav__portfolio-subtitle margin-top-0">Support Operations</p>
-                  <a href="{% assetPath %}portfolio/so/" class="usa-link" aria-label="View more information about SO">View SO</a>
-                </div>                
-              </div>
-            </div>            
-          </div>          
-        </li>        
-        <li class="usa-nav__primary-item">
-          <a href="{% assetPath %}course-catalog/" class="usa-nav-link">
-            <span>Course Catalog</span>
-          </a>
-        </li>         
+            {% endif %}
+          </li>
+        {% endfor %}
       </ul>
     </nav>
   </div>
