@@ -5,7 +5,7 @@
     <div class="usa-navbar">
       <div class="usa-logo">
         <em class="usa-logo__text">
-          <a href="{{ assetPath }}" title="VA Simlearn">
+          <a href="{% assetPath %}" title="VA Simlearn">
             VA <span> | SimLEARN</span>
           </a>
         </em>
@@ -14,7 +14,7 @@
     </div>
     <nav aria-label="Primary navigation" class="usa-nav">
       <button type="button" class="usa-nav__close">
-        <img src="{{ assetPath }}assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
+        <img src="{% assetPath %}assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
       </button>
       <ul class="usa-nav__primary usa-accordion">
         {% for link in navigation.primaryLinks %}
