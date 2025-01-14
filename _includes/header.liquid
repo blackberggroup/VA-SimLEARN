@@ -31,7 +31,7 @@
               <ul id="section-{{ forloop.index }}" class="usa-nav__submenu">
                 {% for sublink in link.submenu %}
                   <li class="usa-nav__submenu-item">
-                    <a href="{{ assetPath }}{{ sublink.url }}" class="{% if currentPageUrl == sublink.url %}usa-current{% endif %}">
+                    <a href="{% assetPath %}{{ sublink.url }}" class="{% if currentPageUrl == sublink.url %}usa-current{% endif %}">
                       <span>{{ sublink.label }}</span>
                     </a>
                   </li>
