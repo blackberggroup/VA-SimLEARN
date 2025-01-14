@@ -39,9 +39,12 @@
 //     z-index: 1;
 // }
 @media screen and (max-width: 800px) {
-//     .vcl-button {
-//         display: none;
-//    }
+    .vcl-button {
+        position: relative;
+        right: 0;
+        height: 32px;
+        margin: 0 -1rem;
+   }
 }
 
 .vcl-modal {

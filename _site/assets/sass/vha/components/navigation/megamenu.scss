@@ -4,10 +4,18 @@
 .usa-nav {
 
     &__portfolio {
-        padding: 40px;
 
         &-title {
             margin: 0;
+
+            @include at-media(mobile) {
+                font-size: 1rem;
+            }
+
+            @include at-media(desktop) {
+                font-size: 1.5rem;
+            }
+
         }
     }
 

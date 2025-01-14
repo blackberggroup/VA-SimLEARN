@@ -22,8 +22,8 @@
                 }
 
                 &.usa-current {
-                    background-color: $theme-primary-dark;
-                    color: #ffffff;
+                    box-shadow: inset 0px -2px 0px $theme-primary;
+                    color: $theme-primary
                 }
             }
         }
