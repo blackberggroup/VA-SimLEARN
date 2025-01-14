@@ -1,15 +1,17 @@
+const pathPrefix = process.env.PATH_PREFIX || "/";
+
 module.exports = {
   primaryLinks: [
     { 
       label: "Home", 
-      url: "/", 
+      url: `${pathPrefix}`, 
       submenu: null 
     },
     {
       label: "About Us",
       submenu: [
-        { label: "About SimLEARN", url: "/about-us/" },
-        { label: "SimLEARN Leadership Team", url: "/about-us/simlearn-leadership/" },
+        { label: "About SimLEARN", url: `${pathPrefix}about-us/` },
+        { label: "SimLEARN Leadership Team", url: `${pathPrefix}about-us/simlearn-leadership/` },
       ]
     },
     { 
