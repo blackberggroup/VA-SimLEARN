@@ -23,43 +23,43 @@ module.exports = {
         {
           title: "SimLEARN",
           description: "Simulation Validation, Evaluation, and Testing",
-          url: "/portfolio/simlearn/"
+          url: "portfolio/simlearn/"
         },
         {
           title: "REdI",
           description: "Resuscitation Education and Innovation",
-          url: "/portfolio/redi/"
+          url: "portfolio/redi/"
         },
         {
           title: "LM",
           description: "Learning Management",
-          url: "/portfolio/lm/"
+          url: "portfolio/lm/"
         },
         {
           title: "ACO",
           description: "Assessment, Collaboration and Outreach",
-          url: "/portfolio/aco/"
+          url: "portfolio/aco/"
         },
         {
           title: "CTE",
           description: "Clinical Training and Engagement",
-          url: "/portfolio/cte/"
+          url: "portfolio/cte/"
         },
         {
           title: "SO",
           description: "Support Operations",
-          url: "/portfolio/so/"
+          url: "portfolio/so/"
         }
       ]
     },
     { 
       label: "Course Catalog", 
-      url: "/course-catalog/", 
+      url: "course-catalog/", 
       submenu: null 
     },
     { 
       label: "Contact Us", 
-      url: "/contact-us/", 
+      url: "contact-us/", 
       submenu: null 
     },    
   ]
