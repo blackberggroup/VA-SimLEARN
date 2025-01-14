@@ -10,7 +10,6 @@ module.exports = {
       submenu: [
         { label: "About SimLEARN", url: "/about-us/" },
         { label: "SimLEARN Leadership Team", url: "/about-us/simlearn-leadership/" },
-        { label: "Contact Us", url: "/about-us/contact-us/" }
       ]
     },
     { 
@@ -57,6 +56,11 @@ module.exports = {
       label: "Course Catalog", 
       url: "/course-catalog/", 
       submenu: null 
-    }
+    },
+    { 
+      label: "Contact Us", 
+      url: "/contact-us/", 
+      submenu: null 
+    },    
   ]
 };
