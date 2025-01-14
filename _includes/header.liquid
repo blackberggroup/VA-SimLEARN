@@ -56,14 +56,14 @@
                       <div class="usa-nav__portfolio padding-2 desktop:padding-4">
                         <h3 class="usa-nav__portfolio-title">{{ item.title }}</h3>
                         <p class="usa-nav__portfolio-subtitle margin-top-0">{{ item.description }}</p>
-                        <a href="{{ assetPath }}{{ item.url }}" class="usa-link" aria-label="View more information about {{ item.title }}">View {{ item.title }}</a>
+                        <a href="{% assetPath %}{{ item.url }}" class="usa-link" aria-label="View more information about {{ item.title }}">View {{ item.title }}</a>
                       </div>
                     </div>
                   {% endfor %}
                 </div>
               </div>
             {% else %}
-              <a href="{{ assetPath }}{{ link.url }}" class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
+              <a href="{% assetPath %}{{ link.url }}" class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
                 <span>{{ link.label }}</span>
               </a>
             {% endif %}
