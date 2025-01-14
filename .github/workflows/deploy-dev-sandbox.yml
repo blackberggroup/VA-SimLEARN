@@ -28,7 +28,7 @@ jobs:
       run: |
         NODE_ENV=production npx @11ty/eleventy
       env:
-        PATH_PREFIX: /simlearn/ # Set production prefix
+        PATH_PREFIX: /simlearn # Set production prefix
 
     - name: 📂 Sync files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -46,7 +46,6 @@ jobs:
           **/node_modules/**
           **/assets/sass/**
           **/uswds/img/material-icons-deprecated/**
-          **/uswds/img/material-icons/*
 
   lighthouse:
     name: 👀 Lighthouse Scan
