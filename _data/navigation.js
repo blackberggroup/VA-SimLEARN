@@ -8,13 +8,13 @@ module.exports = {
     {
       label: "About Us",
       submenu: [
-        { label: "About SimLEARN", url: "/about-us/" },
-        { label: "SimLEARN Leadership Team", url: "/about-us/simlearn-leadership/" },
+        { label: "About SimLEARN", url: "about-us/" },
+        { label: "SimLEARN Leadership Team", url: "about-us/simlearn-leadership/" },
       ]
     },
     { 
       label: "News & Media", 
-      url: "/news-and-media/", 
+      url: "news-and-media/", 
       submenu: null 
     },
     {
