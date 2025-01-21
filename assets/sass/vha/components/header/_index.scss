@@ -1,7 +1,7 @@
 @use "uswds-core" as *;
 
 .usa-header {
-  background: white;
+
   @include at-media(desktop) {
     &--basic {
       .usa-nav-container {

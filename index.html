@@ -31,7 +31,13 @@
       {% include "header.liquid",  currentPageUrl: page.url %}
 
         <main>
-            <div style="height: 200px;"></div>
+            {% include "home/hero.liquid" %}
+            {% include "home/feature-cta.liquid" %}
+            {% include "home/transforming-healthcare.liquid" %}
+            {% include "home/what-can-we-do.liquid" %}
+            {% include "home/what-is-simlearn.liquid" %}
+            {% include "home/im-looking-for.liquid" %}
+            {% include "home/programs.liquid" %}
         </main>
 
         {% include "footer.liquid" %}
