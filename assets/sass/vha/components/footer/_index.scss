@@ -45,3 +45,22 @@
 .usa-identifier__required-link:hover {
     color: #e6e6e6;
 }
+
+.usa-footer__simlearn {
+    background-color: $theme-primary-darkest;
+
+    &::before {
+        content: ''; 
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/assets/img/home/grid-bg.svg');
+        background-repeat: repeat;
+        background-size: auto; 
+        background-position: center; 
+        opacity: 0.25; 
+        pointer-events: none;
+      }
+}
