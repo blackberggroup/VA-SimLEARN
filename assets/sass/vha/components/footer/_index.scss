@@ -1,4 +1,5 @@
 @use "uswds-core" as *;
+@use "vha/variables" as *;
 
 .usa-footer {
 
@@ -22,7 +23,7 @@
 }
 
 .usa-identifier {
-    background-color: #0e1d33;
+    background-color: $theme-primary-darkest;
 
     &__identity-disclaimer a,
     &__identity-disclaimer a:visited,

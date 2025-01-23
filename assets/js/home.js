@@ -92,36 +92,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const imgCardSections = document.querySelectorAll('.img-card-section');
+const imgCardSections = document.querySelectorAll('.img-card-section');
 
-  imgCardSections.forEach((section) => {
+imgCardSections.forEach((section) => {
 
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top top', 
-      end: 'bottom top', 
-      pin: true, 
-      pinSpacing: false,
-    });
-
-    const img = section.querySelector('.img-cover-container img');
-    if (img) {
-      gsap.fromTo(
-        img,
-        { scale: 1 }, 
-        {
-          scale: 1.1, 
-          ease: 'none', 
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 60%',
-            end: '+=200%',
-            scrub: true, 
-          },
-        }
-      );
-    }
+  ScrollTrigger.create({
+    trigger: section,
+    start: "bottom bottom",
+    end: "bottom top",
+    pin: true,
+    pinSpacing: false, 
   });
+
+  const img = section.querySelector('.img-cover-container img');
+  if (img) {
+    gsap.fromTo(
+      img,
+      { scale: 1 },
+      {
+        scale: 1.1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 60%',
+          end: '+=200%',
+          scrub: true,
+        },
+      }
+    );
+  }
+});
+
 
   const programCols = document.querySelectorAll('.program-col');
 

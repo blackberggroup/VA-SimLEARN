@@ -1,6 +1,8 @@
+@use "vha/variables" as *;
+
 .cta-section {
 
-    background-color: #0E1D33;
+    background-color: $theme-primary-darkest;
 
     &::before {
         content: ''; 
