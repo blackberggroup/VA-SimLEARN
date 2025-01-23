@@ -18,17 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const animations = [
     {
       id: 'lottie-tour',
-      path: '/assets/img/home/navigation.json',
+      path: `${assetPath}assets/img/home/navigation.json`,
       animation: null
     },
     {
       id: 'lottie-course',
-      path: '/assets/img/home/graduate.json',
+      path: `${assetPath}assets/img/home/graduate.json`,
       animation: null
     },
     {
       id: 'lottie-certified',
-      path: '/assets/img/home/verified.json',
+      path: `${assetPath}assets/img/home/verified.json`,
       animation: null
     }
   ];
