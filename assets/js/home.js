@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  gsap.registerPlugin(ScrollTrigger);
+  
+  const lenis = new Lenis()
+
+  lenis.on('scroll', (e) => {
+  });
+
+  lenis.on('scroll', ScrollTrigger.update)
+
+  gsap.ticker.add((time)=>{
+  lenis.raf(time * 1000)
+  })
+
+  gsap.ticker.lagSmoothing(0);
+
   const animations = [
     {
       id: 'lottie-tour',
@@ -67,8 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(container);
   });
 
-    gsap.registerPlugin(ScrollTrigger);
-  
     gsap.to('#mouse-wheel', {
       y: 10, 
       repeat: -1,
