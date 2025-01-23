@@ -26,3 +26,30 @@ h4, .h4 {
 .usa-link {
     color: $theme-primary;
 }
+
+.text-primary-darker {
+    color: $theme-primary-darker;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #0050D8 0%, #0E1D33 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-indent-border {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+
+    &:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 32px;
+        height: 3px;
+        background: #0050D8;
+    }
+}

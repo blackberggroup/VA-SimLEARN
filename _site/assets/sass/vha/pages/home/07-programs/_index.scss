@@ -1,0 +1,100 @@
+@use "uswds-core" as *;
+
+.programs-section {
+  .program-col {
+    border-bottom: 1px solid #DFE1E2;
+    border-right: none;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h3 {
+        font-size: 40px;
+    }
+  }
+
+  @include at-media(tablet) {
+    .program-col {
+      border-right: 1px solid #DFE1E2;
+
+      &:nth-child(2n),
+      &:nth-child(7n) {
+        border-right: none;
+      }
+
+      &:nth-child(5n) {
+        border-bottom: none;
+      }
+
+      h3 {
+        font-size: 48px;
+      }
+    }
+  }
+
+  @include at-media(desktop) {
+    .program-col {
+      border-right: 1px solid #DFE1E2;
+
+      &:nth-child(2n), &:nth-child(4n) {
+        border-right: 1px solid #DFE1E2;
+      }
+
+      &:nth-child(3n),
+      &:nth-child(7n) {
+        border-right: none;
+      }
+
+      &:nth-child(4n) {
+        border-bottom: none;
+      }
+    }
+  }
+
+  @keyframes gradient-move {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  a {
+    position: relative; 
+    text-decoration: none;
+    z-index: 1; 
+    overflow: hidden; 
+    transition: color 0.3s ease, box-shadow 0.3s ease;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #0050D8, #0F1E34);
+      background-size: 150% 150%; 
+      z-index: -1; 
+      transition: opacity 0.3s ease;
+      opacity: 0; 
+    }
+
+    &:hover,
+    &:focus {
+      color: #fff; 
+      box-shadow: 0px 12px 48px 0px rgba(0, 0, 0, 0.3);
+
+      * {
+        color: #fff;
+      }
+
+      &:before {
+        opacity: 1; 
+        animation: gradient-move 3s linear infinite; 
+      }
+    }
+  }
+}

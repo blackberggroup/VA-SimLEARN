@@ -1,0 +1,51 @@
+@use "uswds-core" as *;
+
+.hero-section {
+
+  .hero-image-wrapper {
+    height: 235px;
+  }
+
+  .hero-image {
+    object-fit: cover; 
+    border-radius: 8px;
+    object-position: right;
+  }
+
+  .subtitle {
+    width: 100%;
+  }
+
+
+  @include at-media(tablet) {
+    .hero-image-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 65%; 
+      height: 100%;
+      border-radius: 0;
+      border-bottom-left-radius: 8px;
+    }
+    .hero-image {
+      object-position: right;
+    }
+  
+  }
+
+  @include at-media(desktop) {
+    .hero-image {
+      object-position: center;
+    }
+  
+    .subtitle {
+      width: 60%;
+    }
+  }
+}
+
+.scroll-down-container {
+  left: 50%;
+  transform: translateX(-50%);
+}

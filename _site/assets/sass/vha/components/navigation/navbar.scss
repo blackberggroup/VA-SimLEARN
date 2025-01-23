@@ -2,6 +2,8 @@
 @use "vha/variables" as *;
 
 .usa-nav__primary>.usa-nav__primary-item>a {
+    color: $theme-base-darkest;
+
     @include at-media(desktop) {
         padding: 2rem 1rem;
     }
@@ -9,10 +11,11 @@
 }
 
 .usa-nav__primary button {
+    color: $theme-base-darkest;
+    
     @include at-media(desktop) {
         padding: 2rem 1rem;
     }
-
 }
 
 @media (max-width: 63.99em) {

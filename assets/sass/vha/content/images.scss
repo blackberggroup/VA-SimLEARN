@@ -1,4 +1,51 @@
+@use "uswds-core" as *;
+
 .img-fluid {
     max-width: 100%;
     height: auto;
+}
+
+.img-card-section {
+
+    flex-direction: column;
+
+    .img-cover-container {
+        position: relative;
+        height: 200px;
+    
+        .img-cover {
+            object-fit: cover; 
+            object-position: center;
+            border-radius: 8px;
+        }
+    
+    }
+
+    @include at-media(tablet) {
+
+        .img-cover-container {
+            height: 400px;
+
+            .img-cover {
+                object-position: bottom;
+            }
+        }
+    }
+
+    @include at-media(desktop) {
+
+        flex-direction: row;
+
+        .img-cover-container {
+            position: relative;
+            width: 740px;
+            height: 900px;
+
+            .img-cover {
+                border-radius: 0;
+                object-position: center;
+            }
+        }
+        
+    }
 }
