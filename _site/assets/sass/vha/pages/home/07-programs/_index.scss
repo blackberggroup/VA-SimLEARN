@@ -13,6 +13,11 @@
     h3 {
         font-size: 40px;
     }
+
+    .program-title {
+        font-size: 22px;
+        line-height: 24px;
+    }
   }
 
   @include at-media(tablet) {

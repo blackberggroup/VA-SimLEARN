@@ -16,8 +16,12 @@
     width: 100%;
   }
 
+  h1 {
+    font-size: 32px;
+  }
 
-  @include at-media(tablet) {
+
+  @include at-media(tablet-lg) {
     .hero-image-wrapper {
       position: absolute;
       top: 0;
@@ -31,16 +35,29 @@
     .hero-image {
       object-position: right;
     }
+
+    h1 {
+      font-size: 48px;
+    }
   
   }
 
   @include at-media(desktop) {
+
+    h1 {
+      font-size: 56px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
     .hero-image {
       object-position: center;
     }
   
     .subtitle {
-      width: 60%;
+      width: 56%;
     }
   }
 }

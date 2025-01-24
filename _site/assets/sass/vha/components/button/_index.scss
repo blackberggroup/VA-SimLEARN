@@ -1,35 +1,12 @@
 @use "uswds-core" as *;
 @use "vha/variables" as *;
+@use 'vha/content/animations' as *;
 
 .vha-button {
     &.usa-button--outline.usa-button--inverse {
         box-shadow: inset 0 0 0 2px #{color("base-lightest")};
         color: #{color("base-lightest")};
     }
-}
-
-@keyframes gradient-move {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes move-img-left-to-right {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-10px); 
-  }
-  100% {
-    transform: translateX(0); 
-  }
 }
 
 .btn-gradient {
@@ -69,7 +46,8 @@
   padding: 24px;
 
   img {
-    filter: invert(1) brightness(2)
+    filter: invert(1) brightness(2);
+    transition: transform 0.2s ease, filter 0.2s ease; 
   }
 
   &:hover, &:focus, &:active {
