@@ -13,4 +13,8 @@ $theme-base-base: #{color("gray-cool-50")};
 $theme-base-dark: #{color("gray-80")};
 $theme-base-darkest: #{color("gray-90")};
 
-$asset-path: "{{ assetPath }}";
+$asset-path: "/";
+
+@if env("NODE_ENV") == "production" {
+  $asset-path: "/simlearn/";
+}
