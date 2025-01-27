@@ -13,10 +13,6 @@ module.exports = function (eleventyConfig) {
     "!src/sass/**": false, // Explicitly exclude the SCSS directory
   });
 
-   // Add assetPath as a global data variable
-   eleventyConfig.addGlobalData("assetPath", pathPrefix);
-
-
   // Shortcode for asset paths
   eleventyConfig.addShortcode("assetPath", function () {
     return pathPrefix;
