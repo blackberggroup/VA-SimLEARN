@@ -63,31 +63,24 @@
                 </div>
               </div>
             {% else %}
-        <!-- Handle URL normalization -->
-        {% if pathPrefix != "/" %}
-          {% assign normalizedUrl = currentPageUrl | remove: pathPrefix | remove: "/" %}
-          {% assign linkUrl = pathPrefix | append: link.url | remove: "/" %}
-        {% else %}
-          {% assign normalizedUrl = currentPageUrl %}
-          {% assign linkUrl = link.url %}
-        {% endif %}
-
-        <!-- Special case for the home page -->
-        {% if normalizedUrl == "" %}
-          {% assign normalizedUrl = "/" %}
-        {% endif %}
-
-        <!-- Debugging output (remove in production) -->
-        <p>Current Page URL: {{ currentPageUrl }}</p>
-        <p>Normalized Page URL: {{ normalizedUrl }}</p>
-        <p>Path Prefix: {{ pathPrefix }}</p>
-        <p>Link URL: {{ linkUrl }}</p>
-
-        <a href="{{ assetPath }}{{ link.url }}" 
-          class="usa-nav-link {% if normalizedUrl == linkUrl %}usa-current{% endif %}">
-          <span>{{ link.label }}</span>
-        </a>
-
+            {% assign normalizedUrl = currentPageUrl | remove: pathPrefix | remove: "//" %}
+            {% assign linkUrl = pathPrefix | append: link.url | remove: "//" %}
+            
+            <!-- Special case for home page -->
+            {% if currentPageUrl == pathPrefix %}
+              {% assign normalizedUrl = "/" %}
+            {% endif %}
+            
+            <!-- Debugging (remove in production) -->
+            {% comment %} <p>Current Page URL: {{ currentPageUrl }}</p>
+            <p>Normalized Page URL: {{ normalizedUrl }}</p>
+            <p>Path Prefix: {{ pathPrefix }}</p>
+            <p>Link URL: {{ linkUrl }}</p>
+             {% endcomment %}
+            <a href="{{ assetPath }}{{ link.url }}" 
+               class="usa-nav-link {% if normalizedUrl == linkUrl %}usa-current{% endif %}">
+              <span>{{ link.label }}</span>
+            </a>
             {% endif %}
           </li>
         {% endfor %}
