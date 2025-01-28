@@ -21,7 +21,11 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="{% assetPath %}assets/uswds/js/uswds-init.min.js"></script>
-  
+  <style>
+    :root {
+      --asset-path: "{% assetPath %}";
+    }
+  </style>
 </head>
 
 <body>
@@ -29,7 +33,8 @@
     <!-- SITE WRAPPER - START -->
     <div class="site-wrapper page-home">
       {% include "banner.liquid" %}
-      {% include "header.liquid",  currentPageUrl: page.url %}
+      <!-- {% include "header.liquid",  currentPageUrl: page.url %} -->
+      {% include "header.liquid", currentPageUrl: page.url, pathPrefix: pathPrefix %}
 
         <main>
             {% include "home/01-hero.liquid" %}
