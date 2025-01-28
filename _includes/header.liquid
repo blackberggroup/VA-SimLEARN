@@ -67,10 +67,10 @@
             {% assign linkUrl = link.url | prepend: pathPrefix | remove: "/" %}
             
             <!-- Debugging (remove in production) -->
-            {% comment %} <p>Current Page URL: {{ currentPageUrl }}</p>
+             <p>Current Page URL: {{ currentPageUrl }}</p>
             <p>Normalized Page URL: {{ normalizedUrl }}</p>
             <p>Path Prefix: {{ pathPrefix }}</p>
-            <p>Link URL: {{ linkUrl }}</p> {% endcomment %}
+            <p>Link URL: {{ linkUrl }}</p>
             
             <a href="{{ assetPath }}{{ link.url }}" 
                class="usa-nav-link {% if normalizedUrl == linkUrl %}usa-current{% endif %}">
