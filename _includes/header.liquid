@@ -16,12 +16,6 @@
       <button type="button" class="usa-nav__close">
         <img src="{% assetPath %}assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
       </button>
-      <div style="display: none;">
-        <p>Current Page URL: {{ currentPageUrl }}</p>
-      </div>
-      <div style="display: none;">
-        <p>Page URL: {{ page.url }}</p>
-      </div>
       <ul class="usa-nav__primary usa-accordion">
         {% for link in navigation.primaryLinks %}
           <li class="usa-nav__primary-item">
@@ -40,7 +34,6 @@
                     <a href="{{ assetPath }}{{ sublink.url }}" class="{% if currentPageUrl == sublink.url %}usa-current{% endif %}">
                       <span>{{ sublink.label }}</span>
                     </a>
-                    <pre>Sublink URL: {{ sublink.url }}</pre>
                   </li>
                 {% endfor %}
               </ul>
@@ -70,9 +63,20 @@
                 </div>
               </div>
             {% else %}
-              <a href="{{ assetPath }}{{ link.url }}" class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
-                <span>{{ link.label }}</span>
-              </a>
+            {% assign normalizedUrl = currentPageUrl | remove: pathPrefix | remove: "/" %}
+            {% assign linkUrl = link.url | prepend: pathPrefix | remove: "/" %}
+            
+            <!-- Debugging (remove in production) -->
+            {% comment %} <p>Current Page URL: {{ currentPageUrl }}</p>
+            <p>Normalized Page URL: {{ normalizedUrl }}</p>
+            <p>Path Prefix: {{ pathPrefix }}</p>
+            <p>Link URL: {{ linkUrl }}</p> {% endcomment %}
+            
+            <a href="{{ assetPath }}{{ link.url }}" 
+               class="usa-nav-link {% if normalizedUrl == linkUrl %}usa-current{% endif %}">
+              <span>{{ link.label }}</span>
+            </a>
+            
             {% endif %}
           </li>
         {% endfor %}

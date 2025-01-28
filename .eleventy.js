@@ -13,7 +13,8 @@ module.exports = function (eleventyConfig) {
     "!src/sass/**": false, // Explicitly exclude the SCSS directory
   });
 
-  // Shortcode for asset paths
+  eleventyConfig.addGlobalData("pathPrefix", pathPrefix);
+
   eleventyConfig.addShortcode("assetPath", function () {
     return pathPrefix;
   });
