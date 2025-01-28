@@ -16,6 +16,9 @@
       <button type="button" class="usa-nav__close">
         <img src="{% assetPath %}assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
       </button>
+      <div style="display: none;">
+        <p>Current Page URL: {{ currentPageUrl }}</p>
+      </div>
       <ul class="usa-nav__primary usa-accordion">
         {% for link in navigation.primaryLinks %}
           <li class="usa-nav__primary-item">
