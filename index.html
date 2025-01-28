@@ -33,8 +33,7 @@
     <!-- SITE WRAPPER - START -->
     <div class="site-wrapper page-home">
       {% include "banner.liquid" %}
-      <!-- {% include "header.liquid",  currentPageUrl: page.url %} -->
-      {% include "header.liquid", currentPageUrl: page.url, pathPrefix: pathPrefix %}
+      {% include "header.liquid", currentPageUrl: page.url | replace: pathPrefix, "" %}
 
         <main>
             {% include "home/01-hero.liquid" %}

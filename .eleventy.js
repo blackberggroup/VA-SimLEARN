@@ -18,6 +18,10 @@ module.exports = function (eleventyConfig) {
     return pathPrefix;
   });
 
+  eleventyConfig.addFilter("isActive", function(currentPageUrl, linkUrl, pathPrefix) {
+    return currentPageUrl === `${pathPrefix}${linkUrl}` ? "usa-current" : "";
+  });
+
   // Return Eleventy configuration
   return {
     pathPrefix: pathPrefix, // Use pathPrefix for production URLs
