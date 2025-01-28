@@ -41,9 +41,10 @@
             position: relative;
             width: 740px;
             height: 900px;
+            margin-left: auto;
+            border-radius: 0;
 
             .img-cover {
-                border-radius: 0;
                 object-position: center;
             }
         }
