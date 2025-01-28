@@ -33,7 +33,13 @@
     <!-- SITE WRAPPER - START -->
     <div class="site-wrapper page-home">
       {% include "banner.liquid" %}
-      {% include "header.liquid", currentPageUrl: page.url | replace: pathPrefix, "" %}
+      {% assign fullPageUrl = page.url %}
+      {% if fullPageUrl == "/" %}
+        {% assign fullPageUrl = assetPath %}
+      {% else %}
+        {% assign fullPageUrl = assetPath | append: fullPageUrl %}
+      {% endif %}
+      {% include "header.liquid", currentPageUrl: fullPageUrl %}
 
         <main>
             {% include "home/01-hero.liquid" %}
