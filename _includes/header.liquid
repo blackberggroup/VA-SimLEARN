@@ -97,6 +97,8 @@
       </button>
       <ul class="usa-nav__primary usa-accordion">
         {% for link in navigation.primaryLinks %}
+          {% assign normalizedCurrentUrl = currentPageUrl | replace: '//', '/' | downcase %}
+          {% assign normalizedLinkUrl = link.url | replace: '//', '/' | downcase %}
           <li class="usa-nav__primary-item">
             <pre>Link URL: {{ link.url }}</pre>
             {% if link.submenu %}
@@ -110,8 +112,9 @@
               </button>
               <ul id="section-{{ forloop.index }}" class="usa-nav__submenu">
                 {% for sublink in link.submenu %}
+                  {% assign normalizedSubLinkUrl = sublink.url | replace: '//', '/' | downcase %}
                   <li class="usa-nav__submenu-item">
-                    <a href="{{ pathPrefix }}{{ sublink.url }}" class="{% if currentPageUrl == sublink.url %}usa-current{% endif %}">
+                    <a href="{{ pathPrefix }}{{ sublink.url }}" class="{% if normalizedCurrentUrl == normalizedSubLinkUrl %}usa-current{% endif %}">
                       <span>{{ sublink.label }}</span>
                     </a>
                     <pre>Sublink URL: {{ sublink.url }}</pre>
@@ -133,24 +136,27 @@
               >
                 <div class="grid-row grid-gap-4">
                   {% for item in link.megaMenu %}
+                    {% assign normalizedMegaMenuItemUrl = item.url | replace: '//', '/' | downcase %}
                     <div class="grid-col-12 desktop:grid-col-4">
                       <div class="usa-nav__portfolio padding-2 desktop:padding-4">
                         <h3 class="usa-nav__portfolio-title">{{ item.title }}</h3>
                         <p class="usa-nav__portfolio-subtitle margin-top-0">{{ item.description }}</p>
-                        <a href="{{ pathPrefix }}{{ item.url }}" class="usa-link" aria-label="View more information about {{ item.title }}">View {{ item.title }}</a>
+                        <a href="{{ pathPrefix }}{{ item.url }}" class="usa-link {% if normalizedCurrentUrl == normalizedMegaMenuItemUrl %}usa-current{% endif %}" aria-label="View more information about {{ item.title }}">
+                          View {{ item.title }}
+                        </a>
                       </div>
                     </div>
                   {% endfor %}
                 </div>
               </div>
             {% else %}
-              <a href="{{ pathPrefix }}{{ link.url }}" class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
+              <a href="{{ pathPrefix }}{{ link.url }}" class="usa-nav-link {% if normalizedCurrentUrl == normalizedLinkUrl %}usa-current{% endif %}">
                 <span>{{ link.label }}</span>
               </a>
             {% endif %}
           </li>
         {% endfor %}
-      </ul>
+      </ul>      
     </nav>
   </div>
 </header>
