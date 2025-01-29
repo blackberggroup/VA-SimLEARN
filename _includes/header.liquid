@@ -63,24 +63,16 @@
                 </div>
               </div>
             {% else %}
-            {% assign normalizedUrl = currentPageUrl | remove: pathPrefix | remove: "//" %}
-            {% assign linkUrl = pathPrefix | append: link.url | remove: "//" %}
-            
-            <!-- Special case for home page -->
-            {% if currentPageUrl == pathPrefix %}
-              {% assign normalizedUrl = "/" %}
-            {% endif %}
-            
-            <!-- Debugging (remove in production) -->
-            {% comment %} <p>Current Page URL: {{ currentPageUrl }}</p>
-            <p>Normalized Page URL: {{ normalizedUrl }}</p>
-            <p>Path Prefix: {{ pathPrefix }}</p>
-            <p>Link URL: {{ linkUrl }}</p>
-             {% endcomment %}
-            <a href="{{ assetPath }}{{ link.url }}" 
-               class="usa-nav-link {% if normalizedUrl == linkUrl %}usa-current{% endif %}">
-              <span>{{ link.label }}</span>
-            </a>
+
+            <div class="display-none">
+              <p>Asset Path: {{ assetPath }}</p>
+              <p>Current Page URL: {{ currentPageUrl }}</p>
+              <p>Link URL: {{ link.url }}</p>
+            </div>
+
+              <a href="{{ assetPath }}{{ link.url }}" class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
+                <span>{{ link.label }}</span>
+              </a>
             {% endif %}
           </li>
         {% endfor %}
