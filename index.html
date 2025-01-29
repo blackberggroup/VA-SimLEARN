@@ -34,16 +34,8 @@
     <div class="site-wrapper page-home">
       {% include "banner.liquid" %}
 
-      {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
+{% include "header.liquid", currentPageUrl: assetPath | append: page.url %}
 
-      {% assign normalizedPageUrl = page.url %}
-      
-      {% unless normalizedPageUrl contains cleanAssetPath %}
-        {% assign normalizedPageUrl = cleanAssetPath | append: normalizedPageUrl %}
-      {% endunless %}
-      
-      {% include "header.liquid", currentPageUrl: normalizedPageUrl %}
-      
 
         <main>
             {% include "home/01-hero.liquid" %}

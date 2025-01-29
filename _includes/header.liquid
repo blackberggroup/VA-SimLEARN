@@ -67,14 +67,16 @@
             <div class="display-none">
               <p>Asset Path: {% assetPath %}</p>
               <p>Current Page URL: {{ currentPageUrl }}</p>
-              <p>Link URL: {{ link.url }}</p>
+              <p>Link URL: {% assetPath %}{{ link.url }}</p>
             </div>
             
-            <a href="{{ link.url }}" 
-                class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
+            {% assign fullLinkUrl = assetPath | append: link.url %}
+            
+            <a href="{{ fullLinkUrl }}" 
+               class="usa-nav-link {% if currentPageUrl == fullLinkUrl %}usa-current{% endif %}">
               <span>{{ link.label }}</span>
             </a>
-              
+            
               
             {% endif %}
           </li>
