@@ -41,6 +41,8 @@
         {% assign fixedPageUrl = cleanAssetPath | append: fixedPageUrl %}
       {% endunless %}
       
+      {% assign fixedPageUrl = fixedPageUrl | replace: "//", "/" %} 
+      
       {% include "header.liquid", currentPageUrl: fixedPageUrl %}
 
         <main>
