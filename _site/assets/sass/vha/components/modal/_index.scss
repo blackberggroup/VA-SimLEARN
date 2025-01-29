@@ -1,5 +1,7 @@
+@use "vha/variables" as *;
+
 .usa-modal__close {
     &:active, &:hover {
-        color: #0e1d33;
+        color: $theme-primary-darkest;
    }
 }

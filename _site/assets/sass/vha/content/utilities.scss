@@ -1,3 +1,5 @@
+@use "uswds-core" as *;
+
 .z-index-10 { z-index:10;}
 
 .stretched-link::after {
@@ -13,3 +15,21 @@
 }
 
 .position-relative { position: relative; }
+
+.list-buttons {
+    @include at-media(desktop) {
+        width: 440px;
+    }
+    @include at-media(desktop-lg) {
+        width: 540px;
+    }
+
+    .border-bottom {
+        border-bottom: 1px solid #DFE1E2;
+    }
+}
+
+.bg-grid {
+    opacity: 0.25; 
+    pointer-events: none;
+}

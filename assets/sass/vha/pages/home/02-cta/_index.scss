@@ -1,0 +1,11 @@
+@use "vha/variables" as *;
+
+.cta-section {
+
+    background-color: $theme-primary-darkest;
+
+    .lottie-icon {
+        width: 94px;
+        height: 94px;
+    }
+}

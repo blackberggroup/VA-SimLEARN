@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="{{ og.default.description }}">
+  <meta name="keywords" content="SimLEARN">
   <title>Home | SimLEARN</title>
 
   <meta property="og:title" content="{{ og.default.title }}">
@@ -21,17 +21,30 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="{% assetPath %}assets/uswds/js/uswds-init.min.js"></script>
+  <style>
+    :root {
+      --asset-path: "{% assetPath %}";
+    }
+  </style>
 </head>
 
 <body>
 
     <!-- SITE WRAPPER - START -->
-    <div class="site-wrapper">
+    <div class="site-wrapper page-home">
       {% include "banner.liquid" %}
+
       {% include "header.liquid",  currentPageUrl: page.url %}
 
+
         <main>
-            <div style="height: 200px;"></div>
+            {% include "home/01-hero.liquid" %}
+            {% include "home/02-feature-cta.liquid" %}
+            {% include "home/03-transforming-healthcare.liquid" %}
+            {% include "home/04-what-can-we-do.liquid" %}
+            {% include "home/05-what-is-simlearn.liquid" %}
+            {% include "home/06-im-looking-for.liquid" %}
+            {% include "home/07-programs.liquid" %}
         </main>
 
         {% include "footer.liquid" %}

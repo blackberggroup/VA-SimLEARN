@@ -1,8 +1,10 @@
-/*
-----------------------------------------
-Pages Index SCSS
-----------------------------------------
-Commented out as an example. Be sure to include scss files in this directory.
+@forward "01-hero";
+@forward "02-cta";
+@forward "03-transforming";
+@forward "07-programs";
 
-@forward "masthead";
-*/
+.page-home {
+    * {
+        font-family: "Myriad-Pro", Helvetica, arial, sans-serif;
+    }
+}

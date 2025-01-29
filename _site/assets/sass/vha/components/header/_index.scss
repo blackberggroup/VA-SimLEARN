@@ -1,7 +1,14 @@
 @use "uswds-core" as *;
 
 .usa-header {
-  background: white;
+
+  &--simlearn {
+
+    .usa-nav {
+      padding-bottom: 0;
+    }
+}
+
   @include at-media(desktop) {
     &--basic {
       .usa-nav-container {

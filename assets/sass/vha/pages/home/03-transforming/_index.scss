@@ -1,0 +1,50 @@
+@use "uswds-core" as *;
+
+.transform-img-container {
+    width: 100%;
+    width: 328px;
+
+    img {
+        height: auto;
+    }
+
+    .img-conference {
+        max-width: 145px;
+    }
+
+    .img-training {
+        max-width: 200px;
+    }
+
+    .img-building {
+        max-width: 125px;
+    }
+
+    @include at-media(tablet) {
+        width: 515px;
+
+        .img-conference {
+            max-width: 228px;
+        }
+    
+        .img-training {
+            max-width: 314px;
+        }
+    
+        .img-building {
+            max-width: 197px;
+        }
+
+    }
+}
+
+.transforming-section {
+    .grid-row {
+        flex-direction: column-reverse;
+
+        @include at-media(desktop) {
+            flex-direction: row;
+        }
+    }
+
+}

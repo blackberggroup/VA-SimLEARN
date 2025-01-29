@@ -1,5 +1,67 @@
 <!-- USDWS Footer, medium custom -->
-<footer class="usa-footer">
+<footer class="usa-footer position-relative z-200">
+  <!-- SimLEARN Footer -->
+  <div class="usa-section usa-footer__primary bg-primary-dark text-white usa-footer__simlearn position-relative overflow-hidden">
+    <div style="background-image: url('{% assetPath %}assets/img/home/grid-bg.svg');" class="bg-grid position-absolute width-full height-full margin-top-neg-8"></div>
+    <div class="grid-container">
+      <div class="grid-row">
+        <!-- VA Logo and Organization Info -->
+        <div class="grid-col-12 tablet-lg:grid-col-7 desktop-lg:grid-col-6">
+          <div class="usa-media-block padding-right-2 tablet-lg:padding-right-15 desktop:padding-right-8">
+            <img
+              src="{% assetPath %}assets/img/va-simlearn-seal.webp"
+              alt="VA Logo"
+              class="usa-media-block__img"
+            />
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="tablet:grid-col-6 desktop-lg:grid-col-3 margin-top-5 desktop-lg:margin-top-0">
+          <h3 class="text-bold text-white margin-top-0 margin-bottom-2">Contact Us</h3>
+          <p>
+            <a href="mailto:VASimLEARNGeneralInformation@va.gov" class="text-white">
+              VASimLEARNGeneralInformation@va.gov
+            </a>
+          </p>
+          <p>Office: 407-631-9503</p>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="tablet:grid-col-6 desktop-lg:grid-col-3 margin-top-5 desktop-lg:margin-top-0">
+          <h3 class="text-bold text-white margin-top-0 margin-bottom-2">Connect on Social Media</h3>
+          <p>
+            Veterans, stay updated and engage with us on social media to learn
+            more.
+          </p>
+          <div class="usa-social-links display-flex flex-align-center">
+            <a href="https://www.facebook.com/VHAInnovation/" title="Find us on Facebook @VHAInnovation" class="margin-right-2">
+              <img
+                src="{% assetPath %}assets/img/icons/icon-facebook.svg"
+                alt="Facebook"
+                class=""
+              />
+            </a>
+            <a href="https://twitter.com/VHAInnovation" title="Find us on Twitter @VHAInnovation" class="margin-right-2">
+              <img
+                src="{% assetPath %}assets/img/icons/twitter.svg"
+                alt="Twitter"
+                class=""
+              />
+            </a>
+            <a href="https://www.youtube.com/user/DeptVetAffairs" title="Watch us on YouTube @deptvetaffairs" class="">
+              <img
+                src="{% assetPath %}assets/img/icons/icon-youtube.svg"
+                alt="YouTube"
+                class=""
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <div class="usa-footer__secondary-section">
     <div class="grid-container">
       <div class="grid-row grid-gap">
@@ -8,7 +70,7 @@
             <img class="usa-footer__logo-img" src="{% assetPath %}assets/img/va-color-seal-black-text.png"
               title="U.S. Department of Veterans Affairs" alt="Logo for the U.S. Department of Veterans Affairs" />
             <p class="usa-footer__logo-heading"><h3 class="font-serif-lg text-bold">In Crisis? Get Help Now</h3>
-              <a href="http://www.veteranscrisisline.net/" title="Get Help Now for Veterans in Crisis"><button type="button" class="usa-button">Veterans Crisis Line</button></a>
+              <a href="http://www.veteranscrisisline.net/" title="Get Help Now for Veterans in Crisis"><button type="button" class="usa-button width-auto">Veterans Crisis Line</button></a>
             </p>
           </div>
         </div>

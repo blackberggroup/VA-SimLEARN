@@ -1,18 +1,32 @@
 @use "uswds-core" as *;
 @use "vha/variables" as *;
 
+.usa-navbar {
+    .usa-menu-btn {
+        background: none;
+        color: $theme-base-darkest;
+        font-weight: 700;
+      }
+}
+
+.usa-nav__primary a:not(.usa-button):not(.usa-current) {
+    color: $theme-base-darkest;
+}
+
 .usa-nav__primary>.usa-nav__primary-item>a {
+    color: $theme-base-darkest;
+
     @include at-media(desktop) {
         padding: 2rem 1rem;
     }
-
 }
 
 .usa-nav__primary button {
+    color: $theme-base-darkest;
+
     @include at-media(desktop) {
         padding: 2rem 1rem;
     }
-
 }
 
 @media (max-width: 63.99em) {
