@@ -64,13 +64,20 @@
               </div>
             {% else %}
 
+
+            {% assign fullCurrentPageUrl = assetPath | append: currentPageUrl | replace: "//", "/" %}
+
             <div class="display-none">
               <p>Asset Path: {% assetPath %}</p>
               <p>Current Page URL: {{ currentPageUrl }}</p>
               <p>Link URL: {% assetPath %}{{ link.url }}</p>
-            </div>
+              <p>Full Current Page URL: {{ fullCurrentPageUrl }}</p>
+              </div>
+
+    
+
             
-            <a href="{{ assetPath }}{{ link.url }}" class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
+            <a href="{{ assetPath }}{{ link.url }}" class="usa-nav-link {% if fullCurrentPageUrl == link.url %}usa-current{% endif %}">
               <span>{{ link.label }}</span>
             </a>
             
