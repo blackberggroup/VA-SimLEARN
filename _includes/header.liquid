@@ -72,16 +72,18 @@
             
             {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
             
-            {% if link.url contains cleanAssetPath %}
-              {% assign cleanLinkUrl = link.url | remove_first: cleanAssetPath %}
-            {% else %}
-              {% assign cleanLinkUrl = link.url %}
-            {% endif %}
+            {%- assign normalizedCurrentPageUrl = currentPageUrl -%}
+            {%- if cleanAssetPath != "/" and normalizedCurrentPageUrl does not contain cleanAssetPath -%}
+              {%- assign normalizedCurrentPageUrl = cleanAssetPath | append: normalizedCurrentPageUrl -%}
+            {%- endif -%}
             
-            <a href="{{ cleanAssetPath }}{{ cleanLinkUrl }}" 
-               class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
+            <a href="{{ link.url }}" 
+               class="usa-nav-link {% if normalizedCurrentPageUrl == link.url %}usa-current{% endif %}">
               <span>{{ link.label }}</span>
             </a>
+            
+            
+            
             {% endif %}
           </li>
         {% endfor %}
