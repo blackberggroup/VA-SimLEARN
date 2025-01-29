@@ -70,7 +70,15 @@
               <p>Link URL: {{ link.url }}</p>
             </div>
             
-            <a href="{% assetPath %}{{ link.url | remove_first: '/' }}" 
+            {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
+            
+            {% if cleanAssetPath == "/" %}
+              {% assign cleanLinkUrl = link.url | remove_first: "/" %}
+            {% else %}
+              {% assign cleanLinkUrl = link.url %}
+            {% endif %}
+            
+            <a href="{{ cleanAssetPath }}{{ cleanLinkUrl }}" 
                class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
               <span>{{ link.label }}</span>
             </a>
