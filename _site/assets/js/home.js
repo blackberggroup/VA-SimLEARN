@@ -112,7 +112,7 @@ imgCardSections.forEach((section) => {
 
   ScrollTrigger.create({
     trigger: section,
-    start: "bottom bottom",
+    start: "bottom 50%",
     end: "bottom top",
     pin: true,
     pinSpacing: false, 
