@@ -34,8 +34,14 @@
     <div class="site-wrapper page-home">
       {% include "banner.liquid" %}
 
-      {% include "header.liquid", currentPageUrl: page.url, assetPath: assetPath %}
-    
+      {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
+
+      {% assign fixedPageUrl = page.url %}
+      {% unless fixedPageUrl contains cleanAssetPath %}
+        {% assign fixedPageUrl = cleanAssetPath | append: fixedPageUrl %}
+      {% endunless %}
+      
+      {% include "header.liquid", currentPageUrl: fixedPageUrl %}
 
         <main>
             {% include "home/01-hero.liquid" %}

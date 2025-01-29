@@ -70,20 +70,12 @@
               <p>Link URL: {{ link.url }}</p>
             </div>
             
-            {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
-            
-            {%- assign normalizedCurrentPageUrl = currentPageUrl -%}
-            {%- if cleanAssetPath != "/" and normalizedCurrentPageUrl does not contain cleanAssetPath -%}
-              {%- assign normalizedCurrentPageUrl = cleanAssetPath | append: normalizedCurrentPageUrl -%}
-            {%- endif -%}
-            
             <a href="{{ link.url }}" 
-               class="usa-nav-link {% if normalizedCurrentPageUrl == link.url %}usa-current{% endif %}">
+                class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
               <span>{{ link.label }}</span>
             </a>
-            
-            
-            
+              
+              
             {% endif %}
           </li>
         {% endfor %}
