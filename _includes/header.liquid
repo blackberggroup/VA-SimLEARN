@@ -65,7 +65,8 @@
             {% else %}
 
 
-            {% assign fullCurrentPageUrl = assetPath | append: currentPageUrl | replace: "//", "/" %}
+            {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
+            {% assign fullCurrentPageUrl = cleanAssetPath | append: currentPageUrl | replace: "//", "/" %}
 
             <div class="display-none">
               <p>Asset Path: {% assetPath %}</p>
