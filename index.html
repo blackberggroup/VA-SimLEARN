@@ -38,13 +38,14 @@
 
       {% assign fixedPageUrl = page.url %}
       
-      {%- unless fixedPageUrl contains cleanAssetPath -%}
+      {%- if cleanAssetPath != "/" and fixedPageUrl does not contain cleanAssetPath -%}
         {%- assign fixedPageUrl = cleanAssetPath | append: fixedPageUrl -%}
-      {%- endunless -%}
+      {%- endif -%}
       
-      {%- assign fixedPageUrl = fixedPageUrl | replace: "//", "/" -%} 
+      {%- assign fixedPageUrl = fixedPageUrl | replace: "//", "/" -%} <!-- Remove duplicate slashes -->
       
       {% include "header.liquid", currentPageUrl: fixedPageUrl %}
+      
       
 
         <main>
