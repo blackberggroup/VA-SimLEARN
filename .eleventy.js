@@ -17,29 +17,6 @@ module.exports = function (eleventyConfig) {
     return pathPrefix;
   });
 
-  eleventyConfig.on("eleventy.before", ({ dir }) => {
-    const fs = require("fs");
-    const path = `${dir.output}/assets/sass/vha/path-prefix.scss`;
-    const isProduction = process.env.NODE_ENV === "production";
-    const pathPrefix = isProduction ? "/simlearn/" : "/";
-  
-    // Read the existing file (if it exists)
-    const scssContent = `$path-prefix: "${pathPrefix}";\n`;
-    let shouldUpdate = true;
-  
-    if (fs.existsSync(path)) {
-      const existingContent = fs.readFileSync(path, "utf8");
-      if (existingContent === scssContent) {
-        shouldUpdate = false; // Skip writing if content hasn't changed
-      }
-    }
-  
-    if (shouldUpdate) {
-      fs.writeFileSync(path, scssContent);
-      console.log(`✅ Updated path-prefix.scss with pathPrefix: "${pathPrefix}"`);
-    }
-  });
-  
   // Return Eleventy configuration
   return {
     pathPrefix: pathPrefix, // Use pathPrefix for production URLs
