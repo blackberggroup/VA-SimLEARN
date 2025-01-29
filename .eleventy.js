@@ -23,13 +23,13 @@ module.exports = function (eleventyConfig) {
     const isProduction = process.env.NODE_ENV === "production";
     const pathPrefix = isProduction ? "/simlearn/" : "/";
   
-    // Generate the SCSS file only if it has changed
     const scssContent = `$path-prefix: "${pathPrefix}";\n`;
-    if (!fs.existsSync(path) || fs.readFileSync(path, "utf8") !== scssContent) {
+    if (isProduction || !fs.existsSync(path) || fs.readFileSync(path, "utf8") !== scssContent) {
       fs.writeFileSync(path, scssContent);
-      console.log("Updated path-prefix.scss");
+      console.log("✅ Updated path-prefix.scss");
     }
   });
+  
   
 
   // Return Eleventy configuration
