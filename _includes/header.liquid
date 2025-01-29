@@ -65,16 +65,13 @@
             {% else %}
 
             <div class="display-none">
-              <p>Asset Path: {{ assetPath }}</p>
-              <p>Current Page URL: {{ assetPath }}{{ currentPageUrl | remove: assetPath }}</p>
+              <p>Asset Path: {% assetPath %}</p>
+              <p>Current Page URL: {{ currentPageUrl }}</p>
               <p>Link URL: {{ link.url }}</p>
             </div>
             
-            {% assign fullCurrentPageUrl = assetPath | append: currentPageUrl | remove: assetPath %}
-            {% assign fullLinkUrl = assetPath | append: link.url %}
-            
-            <a href="{{ fullLinkUrl }}" 
-               class="usa-nav-link {% if fullCurrentPageUrl == fullLinkUrl %}usa-current{% endif %}">
+            <a href="{% assetPath %}{{ link.url | remove_first: '/' }}" 
+               class="usa-nav-link {% if currentPageUrl == link.url %}usa-current{% endif %}">
               <span>{{ link.label }}</span>
             </a>
             {% endif %}
