@@ -72,8 +72,8 @@
             
             {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
             
-            {% if cleanAssetPath == "/" %}
-              {% assign cleanLinkUrl = link.url | remove_first: "/" %}
+            {% if link.url contains cleanAssetPath %}
+              {% assign cleanLinkUrl = link.url | remove_first: cleanAssetPath %}
             {% else %}
               {% assign cleanLinkUrl = link.url %}
             {% endif %}
