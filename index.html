@@ -34,7 +34,7 @@
     <div class="site-wrapper page-home">
       {% include "banner.liquid" %}
 
-{% include "header.liquid", currentPageUrl: assetPath | append: page.url %}
+      {% include "header.liquid",  currentPageUrl: page.url %}
 
 
         <main>
