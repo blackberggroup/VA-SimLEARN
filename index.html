@@ -37,11 +37,12 @@
       {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
 
       {% assign normalizedPageUrl = page.url %}
-      {% if normalizedPageUrl == "" or normalizedPageUrl == nil %}
-        {% assign normalizedPageUrl = "/" %}
-      {% endif %}
       
-      {% include "header.liquid", currentPageUrl: cleanAssetPath | append: normalizedPageUrl %}
+      {% unless normalizedPageUrl contains cleanAssetPath %}
+        {% assign normalizedPageUrl = cleanAssetPath | append: normalizedPageUrl %}
+      {% endunless %}
+      
+      {% include "header.liquid", currentPageUrl: normalizedPageUrl %}
       
 
         <main>
