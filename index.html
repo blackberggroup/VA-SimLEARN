@@ -36,16 +36,12 @@
 
       {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
 
-      {% assign fixedPageUrl = page.url %}
+      {% assign normalizedPageUrl = page.url %}
+      {% if normalizedPageUrl == "" or normalizedPageUrl == nil %}
+        {% assign normalizedPageUrl = "/" %}
+      {% endif %}
       
-      {%- if cleanAssetPath != "/" and fixedPageUrl does not contain cleanAssetPath -%}
-        {%- assign fixedPageUrl = cleanAssetPath | append: fixedPageUrl -%}
-      {%- endif -%}
-      
-      {%- assign fixedPageUrl = fixedPageUrl | replace: "//", "/" -%} <!-- Remove duplicate slashes -->
-      
-      {% include "header.liquid", currentPageUrl: fixedPageUrl %}
-      
+      {% include "header.liquid", currentPageUrl: cleanAssetPath | append: normalizedPageUrl %}
       
 
         <main>
