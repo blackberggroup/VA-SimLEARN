@@ -7,43 +7,49 @@ on:
 jobs:
   upload-changes-to-slack:
     runs-on: ubuntu-latest
+    # Only proceed if the PR was merged
     if: ${{ github.event.pull_request.merged == true }}
     steps:
       - name: Check out code at the merge commit
         uses: actions/checkout@v3
         with:
-          # Ensure we fetch enough history to get 'HEAD^'
+          # Make sure we have enough history to use HEAD^
           fetch-depth: 2
           # Use the actual merge commit SHA
           ref: ${{ github.sha }}
 
       - name: Identify changed files
         id: diff
-        # We'll capture the changed filenames in an output variable
         run: |
-          # If you want to see the list in the logs, you can add 'echo' here
-          echo "CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)" >> $GITHUB_OUTPUT
+          # Gather changed files between HEAD and HEAD^
+          CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)
+
+          # If you want to see the list in the job log
+          echo "Detected changed files:"
+          echo "$CHANGED_FILES"
+
+          # Convert newlines to spaces (safe for $GITHUB_OUTPUT)
+          CHANGED_FILES_SINGLE_LINE=$(echo "$CHANGED_FILES" | tr '\n' ' ')
+
+          echo "CHANGED_FILES=$CHANGED_FILES_SINGLE_LINE" >> $GITHUB_OUTPUT
 
       - name: Zip the changed files
-        # We will use the output from the step above
         run: |
-          # Create an array from the space-separated filenames
-          IFS=$'\n' read -rd '' -a files <<< "${{ steps.diff.outputs.CHANGED_FILES }}"
-          
-          # If no files changed (e.g., a merge commit with no changes), handle gracefully
-          if [ -z "${files[*]}" ]; then
+          # Pull the space-separated list from the previous step
+          CHANGED_FILES="${{ steps.diff.outputs.CHANGED_FILES }}"
+
+          # If there are no changed files, exit gracefully
+          if [ -z "$CHANGED_FILES" ]; then
             echo "No changed files found. Exiting..."
             exit 0
           fi
 
-          # Zip only the changed files
-          zip changed-files.zip "${files[@]}"
+          zip changed-files.zip $CHANGED_FILES
 
       - name: Upload ZIP to Slack
-        # We'll use cURL and Slack's "files.upload" method
         run: |
           curl -F file=@changed-files.zip \
                -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" \
-               -F "initial_comment=PR #${{ github.event.pull_request.number }} has been merged. Here are the changed files." \
+               -F "initial_comment=PR #${{ github.event.pull_request.number }} merged. Here are the changed files." \
                -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
                https://slack.com/api/files.upload
