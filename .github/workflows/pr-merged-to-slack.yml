@@ -1,55 +1,82 @@
-name: "Upload changed files to Slack on PR merge"
+name: "Upload changed files & post link to Slack on PR merge"
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  upload-changes-to-slack:
+  upload-and-post-link:
     runs-on: ubuntu-latest
-    # Only proceed if the PR was merged
     if: ${{ github.event.pull_request.merged == true }}
+
     steps:
       - name: Check out code at the merge commit
         uses: actions/checkout@v3
         with:
-          # Make sure we have enough history to use HEAD^
-          fetch-depth: 2
-          # Use the actual merge commit SHA
+          fetch-depth: 2  # Ensure we can compare HEAD to HEAD^
           ref: ${{ github.sha }}
 
       - name: Identify changed files
         id: diff
         run: |
-          # Gather changed files between HEAD and HEAD^
+          # Get the changed files between the merge commit (HEAD) and the previous commit (HEAD^)
           CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)
 
-          # If you want to see the list in the job log
-          echo "Detected changed files:"
+          echo "Changed files detected:"
           echo "$CHANGED_FILES"
 
-          # Convert newlines to spaces (safe for $GITHUB_OUTPUT)
+          # Convert newlines to spaces for safe output storage
           CHANGED_FILES_SINGLE_LINE=$(echo "$CHANGED_FILES" | tr '\n' ' ')
 
           echo "CHANGED_FILES=$CHANGED_FILES_SINGLE_LINE" >> $GITHUB_OUTPUT
 
       - name: Zip the changed files
         run: |
-          # Pull the space-separated list from the previous step
           CHANGED_FILES="${{ steps.diff.outputs.CHANGED_FILES }}"
-
-          # If there are no changed files, exit gracefully
+          
           if [ -z "$CHANGED_FILES" ]; then
             echo "No changed files found. Exiting..."
             exit 0
           fi
-
+          
           zip changed-files.zip $CHANGED_FILES
 
       - name: Upload ZIP to Slack
+        id: upload_to_slack
         run: |
-          curl -F file=@changed-files.zip \
-               -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" \
-               -F "initial_comment=PR #${{ github.event.pull_request.number }} merged. Here are the changed files." \
-               -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
-               https://slack.com/api/files.upload
+          # Ensure jq is available (often pre-installed on ubuntu-latest, but let's be safe):
+          sudo apt-get update && sudo apt-get install -y jq
+
+          # Upload the file to Slack
+          # (No initial_comment here, since we want to post a *follow-up* message with the final link)
+          response=$(curl -s -F file=@changed-files.zip \
+                              -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" \
+                              -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+                              https://slack.com/api/files.upload)
+
+          # Extract the 'permalink' from the JSON response
+          permalink=$(echo "$response" | jq -r '.file.permalink')
+
+          # If 'permalink' is null or empty, something went wrong
+          if [ "$permalink" = "null" ] || [ -z "$permalink" ]; then
+            echo "Error uploading file to Slack. Full response:"
+            echo "$response"
+            exit 1
+          fi
+
+          # Save the permalink for the next step
+          echo "FILE_PERMALINK=$permalink" >> $GITHUB_OUTPUT
+
+      - name: Post success message with ZIP link
+        run: |
+          permalink="${{ steps.upload_to_slack.outputs.FILE_PERMALINK }}"
+
+          # Slack message text
+          message="Success! Merge complete. Here are your files: $permalink"
+
+          # Post the message to the same channel
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+            -H "Content-type: application/json" \
+            --data "{\"channel\":\"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\":\"${message}\"}" \
+            https://slack.com/api/chat.postMessage
