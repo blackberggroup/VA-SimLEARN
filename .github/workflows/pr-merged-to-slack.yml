@@ -1,82 +1,64 @@
-name: "Upload changed files & post link to Slack on PR merge"
+name: "On PR merge: Zip changed files, save artifact, notify Slack"
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  upload-and-post-link:
+  zip-and-artifact:
     runs-on: ubuntu-latest
+    
+    # Only run if the PR was merged (not just closed)
     if: ${{ github.event.pull_request.merged == true }}
 
     steps:
-      - name: Check out code at the merge commit
+      - name: Check out the code at the merge commit
         uses: actions/checkout@v3
         with:
-          fetch-depth: 2  # Ensure we can compare HEAD to HEAD^
+          # Make sure HEAD^ exists
+          fetch-depth: 2
+          # This will check out the actual merge commit
           ref: ${{ github.sha }}
-
+      
       - name: Identify changed files
         id: diff
         run: |
-          # Get the changed files between the merge commit (HEAD) and the previous commit (HEAD^)
-          CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)
-
-          echo "Changed files detected:"
-          echo "$CHANGED_FILES"
-
-          # Convert newlines to spaces for safe output storage
-          CHANGED_FILES_SINGLE_LINE=$(echo "$CHANGED_FILES" | tr '\n' ' ')
-
-          echo "CHANGED_FILES=$CHANGED_FILES_SINGLE_LINE" >> $GITHUB_OUTPUT
-
+          echo "CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)" >> $GITHUB_OUTPUT
+      
       - name: Zip the changed files
+        id: zip_files
         run: |
-          CHANGED_FILES="${{ steps.diff.outputs.CHANGED_FILES }}"
+          IFS=$'\n' read -rd '' -a files <<< "${{ steps.diff.outputs.CHANGED_FILES }}"
           
-          if [ -z "$CHANGED_FILES" ]; then
-            echo "No changed files found. Exiting..."
-            exit 0
-          fi
-          
-          zip changed-files.zip $CHANGED_FILES
-
-      - name: Upload ZIP to Slack
-        id: upload_to_slack
-        run: |
-          # Ensure jq is available (often pre-installed on ubuntu-latest, but let's be safe):
-          sudo apt-get update && sudo apt-get install -y jq
-
-          # Upload the file to Slack
-          # (No initial_comment here, since we want to post a *follow-up* message with the final link)
-          response=$(curl -s -F file=@changed-files.zip \
-                              -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" \
-                              -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
-                              https://slack.com/api/files.upload)
-
-          # Extract the 'permalink' from the JSON response
-          permalink=$(echo "$response" | jq -r '.file.permalink')
-
-          # If 'permalink' is null or empty, something went wrong
-          if [ "$permalink" = "null" ] || [ -z "$permalink" ]; then
-            echo "Error uploading file to Slack. Full response:"
-            echo "$response"
-            exit 1
+          # Handle case: no changed files
+          if [ -z "${files[*]}" ]; then
+            echo "No changed files found. Exiting gracefully."
+            # We might still want to notify Slack, so let's just create an empty ZIP
+            zip changed-files.zip
+          else
+            zip changed-files.zip "${files[@]}"
           fi
 
-          # Save the permalink for the next step
-          echo "FILE_PERMALINK=$permalink" >> $GITHUB_OUTPUT
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: changed-files
+          path: changed-files.zip
 
-      - name: Post success message with ZIP link
+      - name: Notify Slack
+        # Example: using Slack chat.postMessage API with a Bot Token
+        # (requires that you store `SLACK_BOT_TOKEN` and `SLACK_CHANNEL_ID` in your repo secrets)
         run: |
-          permalink="${{ steps.upload_to_slack.outputs.FILE_PERMALINK }}"
+          # Build Slack message text. We'll point users to the Actions run page so they can download the artifact.
+          # Everyone needs enough permissions to see the Actions artifacts.
+          MESSAGE="*PR #${{ github.event.pull_request.number }} was merged!*\n\
+Changed files have been saved as an artifact in GitHub Actions.\n\
+Download them here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n\
+(Click 'Artifacts' → 'changed-files' to get the ZIP.)"
 
-          # Slack message text
-          message="Success! Merge complete. Here are your files: $permalink"
-
-          # Post the message to the same channel
+          # Post the message to Slack
           curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
-            -H "Content-type: application/json" \
-            --data "{\"channel\":\"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\":\"${message}\"}" \
-            https://slack.com/api/chat.postMessage
+               -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+               -H "Content-type: application/json; charset=utf-8" \
+               --data "{\"channel\":\"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\":\"${MESSAGE}\"}" \
+               https://slack.com/api/chat.postMessage
