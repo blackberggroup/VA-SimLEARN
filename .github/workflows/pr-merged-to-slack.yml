@@ -33,12 +33,22 @@ jobs:
           # Convert the list of changed files into an array
           IFS=$'\n' read -rd '' -a files <<< "${{ steps.changed-files.outputs.CHANGED_FILES }}"
           
-          # Handle the case where no files changed (or diff returns an empty string)
-          if [ -z "${files[*]}" ]; then
-            echo "No changed files were detected; creating an empty zip file."
+          # Filter out files that do not exist in the checkout.
+          valid_files=()
+          for f in "${files[@]}"; do
+            if [ -e "$f" ]; then
+              valid_files+=("$f")
+            else
+              echo "Warning: File '$f' does not exist and will be skipped."
+            fi
+          done
+          
+          # If no valid files are found, create an empty zip to avoid failing the step.
+          if [ ${#valid_files[@]} -eq 0 ]; then
+            echo "No valid changed files found; creating an empty zip file."
             zip changed_files.zip --quiet --junk-paths --filesync /dev/null
           else
-            zip changed_files.zip "${files[@]}"
+            zip changed_files.zip "${valid_files[@]}"
           fi
 
       - name: Upload ZIP file to Slack
