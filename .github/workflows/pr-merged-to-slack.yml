@@ -1,64 +1,50 @@
-name: "On PR merge: Zip changed files, save artifact, notify Slack"
+name: "PR Merged: Zip Changed Files & Notify Slack"
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  zip-and-artifact:
+  notify-slack:
+    # Only run if the PR was merged and its target branch is main.
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' }}
     runs-on: ubuntu-latest
-    
-    # Only run if the PR was merged (not just closed)
-    if: ${{ github.event.pull_request.merged == true }}
 
     steps:
       - name: Check out the code at the merge commit
         uses: actions/checkout@v3
         with:
-          # Make sure HEAD^ exists
+          # We need at least 2 commits for HEAD^ to exist
           fetch-depth: 2
-          # This will check out the actual merge commit
           ref: ${{ github.sha }}
-      
-      - name: Identify changed files
-        id: diff
+
+      - name: List changed files in the merge commit
+        id: changed-files
         run: |
-          echo "CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)" >> $GITHUB_OUTPUT
-      
+          # List changed files between the merge commit (HEAD) and its parent (HEAD^)
+          CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)
+          echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_OUTPUT
+          echo "Found files:" 
+          echo "${CHANGED_FILES}"
+
       - name: Zip the changed files
-        id: zip_files
+        id: zip
         run: |
-          IFS=$'\n' read -rd '' -a files <<< "${{ steps.diff.outputs.CHANGED_FILES }}"
+          # Convert the list of changed files into an array
+          IFS=$'\n' read -rd '' -a files <<< "${{ steps.changed-files.outputs.CHANGED_FILES }}"
           
-          # Handle case: no changed files
+          # Handle the case where no files changed (or diff returns an empty string)
           if [ -z "${files[*]}" ]; then
-            echo "No changed files found. Exiting gracefully."
-            # We might still want to notify Slack, so let's just create an empty ZIP
-            zip changed-files.zip
+            echo "No changed files were detected; creating an empty zip file."
+            zip changed_files.zip --quiet --junk-paths --filesync /dev/null
           else
-            zip changed-files.zip "${files[@]}"
+            zip changed_files.zip "${files[@]}"
           fi
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: changed-files
-          path: changed-files.zip
-
-      - name: Notify Slack
-        # Example: using Slack chat.postMessage API with a Bot Token
-        # (requires that you store `SLACK_BOT_TOKEN` and `SLACK_CHANNEL_ID` in your repo secrets)
+      - name: Upload ZIP file to Slack
         run: |
-          # Build Slack message text. We'll point users to the Actions run page so they can download the artifact.
-          # Everyone needs enough permissions to see the Actions artifacts.
-          MESSAGE="*PR #${{ github.event.pull_request.number }} was merged!*\n\
-Changed files have been saved as an artifact in GitHub Actions.\n\
-Download them here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n\
-(Click 'Artifacts' → 'changed-files' to get the ZIP.)"
-
-          # Post the message to Slack
-          curl -X POST \
+          curl -F file=@changed_files.zip \
+               -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" \
+               -F "initial_comment=PR #${{ github.event.pull_request.number }} merged into main. Here are the changed files:" \
                -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
-               -H "Content-type: application/json; charset=utf-8" \
-               --data "{\"channel\":\"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\":\"${MESSAGE}\"}" \
-               https://slack.com/api/chat.postMessage
+               https://slack.com/api/files.upload
