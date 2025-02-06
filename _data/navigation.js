@@ -24,33 +24,39 @@ module.exports = {
       megaMenu: [
         {
           title: "SimLEARN",
-          description: "Simulation Validation, Evaluation, and Testing",
-          url: `${pathPrefix}portfolio/simlearn/`
+          description: "SimVET empowers the VHA’s modernization by rigorously testing and validating new healthcare technologies to enhance care and reduce risks.",
+          url: `${pathPrefix}portfolio/simlearn/`,
+          icon: `${pathPrefix}assets/img/menu/simvet-menu-icon.webp`,
         },
         {
           title: "REdI",
-          description: "Resuscitation Education and Innovation",
-          url: `${pathPrefix}portfolio/redi/`
+          description: "REdI elevates resuscitation training by delivering standardized, simulation-based education that improves team performance and patient outcomes.",
+          url: `${pathPrefix}portfolio/redi/`,
+          icon: `${pathPrefix}assets/img/menu/redi-menu-icon.webp`,
         },
         {
           title: "LM",
-          description: "Learning Management",
-          url: `${pathPrefix}portfolio/lm/`
+          description: "LM transforms clinical simulation training with innovative, cost-effective educational solutions that boost Veteran outcomes and optimize clinician time.",
+          url: `${pathPrefix}portfolio/lm/`,
+          icon: `${pathPrefix}assets/img/menu/lm-menu-icon.webp`,
         },
         {
           title: "ACO",
-          description: "Assessment, Collaboration and Outreach",
-          url: `${pathPrefix}portfolio/aco/`
+          description: "ACO drives innovation in Veteran care by leveraging simulation-based training and collaborative practices to optimize resources and support hospital activations.",
+          url: `${pathPrefix}portfolio/aco/`,
+          icon: `${pathPrefix}assets/img/menu/aco-menu-icon.webp`,
         },
         {
           title: "CTE",
-          description: "Clinical Training and Engagement",
-          url: `${pathPrefix}portfolio/cte/`
+          description: "CTE enhances clinical practice and Veteran safety by providing expert simulation training and fostering interprofessional collaboration.",
+          url: `${pathPrefix}portfolio/cte/`,
+          icon: `${pathPrefix}assets/img/menu/cte-menu-icon.webp`,
         },
         {
           title: "SO",
-          description: "Support Operations",
-          url: `${pathPrefix}portfolio/so/`
+          description: "SO ensures a seamless and safe training environment by expertly coordinating activities, maintaining equipment safety, and managing facility operations.",
+          url: `${pathPrefix}portfolio/so/`,
+          icon: `${pathPrefix}assets/img/menu/so-menu-icon.webp`,
         }
       ]
     },

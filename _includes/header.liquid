@@ -54,13 +54,17 @@
                 id="mega-menu-{{ forloop.index }}"
                 class="usa-nav__submenu usa-megamenu padding-0"
               >
-                <div class="grid-row grid-gap-4">
+                <div class="grid-row grid-gap-4 padding-2 desktop:padding-2">
                   {% for item in link.megaMenu %}
                     <div class="grid-col-12 desktop:grid-col-4">
-                      <div class="usa-nav__portfolio padding-2 desktop:padding-4">
-                        <h3 class="usa-nav__portfolio-title">{{ item.title }}</h3>
-                        <p class="usa-nav__portfolio-subtitle margin-top-0">{{ item.description }}</p>
-                        <a href="{{ assetPath }}{{ item.url }}" class="usa-link" aria-label="View more information about {{ item.title }}">View {{ item.title }}</a>
+                      <div class="usa-nav__portfolio">
+                          <a href="{{ assetPath }}{{ item.url }}" class="display-flex usa-link margin-bottom-1 desktop:margin-bottom-0" aria-label="View more information about {{ item.title }}">
+                            <img src="{{item.icon}}" class="display-flex flex-align-self-start margin-right-2 mega-menu-icon" alt="{{item.ittle}} menu icon" />
+                            <div class="display-flex flex-column">
+                              <h3 class="usa-nav__portfolio-title">{{ item.title }}</h3>
+                              <p class="usa-nav__portfolio-subtitle margin-top-1 margin-bottom-0 text-base-darker">{{ item.description }}</p>
+                            </div>
+                          </a>
                       </div>
                     </div>
                   {% endfor %}
