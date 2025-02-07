@@ -108,15 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const imgCardSections = document.querySelectorAll('.img-card-section');
 
-imgCardSections.forEach((section) => {
+ imgCardSections.forEach((section) => {
 
-  ScrollTrigger.create({
-    trigger: section,
-    start: "bottom 50%",
-    end: "bottom top",
-    pin: true,
-    pinSpacing: false, 
-  });
+//   ScrollTrigger.create({
+//     trigger: section,
+//     start: "bottom 50%",
+//     end: "bottom top",
+//     pin: true,
+//     pinSpacing: false, 
+//   });
 
   const img = section.querySelector('.img-cover-container img');
   if (img) {
