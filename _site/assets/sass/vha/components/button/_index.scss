@@ -23,22 +23,23 @@
   background-position: 0% 50%;
   border-radius: 6px;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition:
+  background-position 1s linear,
+  transform 0.2s ease,
+  box-shadow 0.3s ease;
 
   &:hover,
   &:focus {
+    background-position: 100% 50%;
     box-shadow: 0 6px 12px rgba(0, 80, 216, 0.3);
-    animation: gradient-move 3s linear infinite;
 
     img {
       filter: none;
     }
-
   }
 
   &:active {
     box-shadow: 0 2px 6px rgba(0, 80, 216, 0.4);
-    animation: gradient-move 3s linear infinite;
   }
 }
 
@@ -47,21 +48,34 @@
 
   img {
     filter: invert(1) brightness(2);
-    transition: transform 0.2s ease, filter 0.2s ease; 
+    transition: all 0.2s ease;
+    transform:translateX(0px);
   }
 
-  &:hover, &:focus, &:active {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0; 
+    z-index: -1; 
     background: linear-gradient(270deg, $theme-primary-darkest, $theme-primary);
-    background-size: 150% 150%; 
-    box-shadow: 0px 5px 16px 0px rgba(0, 80, 216, 0.3);
+    background-size: 150% 150%;
     background-position: 0% 50%;
+    transition: background-position 2s linear;
     border-radius: 6px;
+    opacity: 0;
+  }
+
+
+  &:hover, &:focus, &:active {
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-    padding: 24px 8px 24px 24px;
+    //padding: 24px 8px 24px 24px;
     color: #fff;
     box-shadow: 0 6px 12px rgba(0, 80, 216, 0.3);
-    animation: gradient-move 3s linear infinite;
+
+    &::before {
+      opacity: 1;
+      background-position: 100% 50%;
+    }
 
     img {
       filter: none;

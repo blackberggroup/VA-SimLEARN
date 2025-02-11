@@ -1,8 +1,8 @@
-<section class="usa-section hero-section mobile:margin-top-neg-6 tablet:margin-top-neg-10 z-100 display-flex flex-column overflow-hidden">
+<section class="usa-section hero-section mobile:margin-top-neg-6 tablet:margin-top-neg-10 z-100 display-flex flex-column overflow-hidden tablet:padding-y-15">
   <div class="grid-container display-flex flex-align-center hero-content position-relative z-100">
     <div class="grid-row grid-gap-lg">
-      <div class="grid-col-12 tablet-lg:grid-col-7 hero-text margin-top-1 tablet-lg:margin-top-0 tablet-lg:padding-y-15">
-        <h1 class="text-bold text-primary-darker margin-bottom-2">
+      <div class="grid-col-12 tablet:grid-col-9 desktop:grid-col-7 hero-text margin-top-2 tablet:margin-bottom-1 desktop:padding-bottom-15 desktop:padding-top-8">
+        <h1 class="text-bold text-primary-darker margin-bottom-2 margin-top-0 desktop:margin-top-6">
           Serving The Largest<br /> Integrated Health Care System
         </h1>
         <p class="text-myriad margin-bottom-4 display-flex subtitle">
@@ -29,11 +29,12 @@
       </div>
     </div>
   </div>
-  <div class="hero-image-wrapper padding-x-2 tablet-lg:padding-x-0 margin-top-6 tablet-lg:margin-top-0">
-    <img
-      src="{% assetPath %}assets/img/home/simlearn-hero.webp"
-      alt="Person wearing VR headset in a training room"
-      class="hero-image width-full height-full"
-    />
+  <div class="hero-image-wrapper padding-x-2 tablet:padding-x-0 margin-top-6 tablet:margin-top-0">
+    <picture>
+      <source media="(max-width: 640px)" srcset="{% assetPath %}assets/img/home/simlearn-hero-mobile.webp" />
+      <source media="(max-width: 999px)" srcset="{% assetPath %}assets/img/home/simlearn-hero-tablet.webp" />
+      <source media="(min-width: 1000px)" srcset="{% assetPath %}assets/img/home/simlearn-hero.webp" />
+      <img src="{% assetPath %}assets/img/home/simlearn-hero.webp" alt="Person wearing VR headset in a training room" class="hero-image width-full height-full" />
+    </picture>
   </div>
 </section>

@@ -268,7 +268,7 @@
             
 
             <a href="/contact-us/" class="usa-nav-link ">
-              <span>Contact Us</span>
+              <span>Contact</span>
             </a>
               
             
@@ -281,11 +281,11 @@
 
 
         <main>
-            <section class="usa-section hero-section mobile:margin-top-neg-6 tablet:margin-top-neg-10 z-100 display-flex flex-column overflow-hidden">
+            <section class="usa-section hero-section mobile:margin-top-neg-6 tablet:margin-top-neg-10 z-100 display-flex flex-column overflow-hidden tablet:padding-y-15">
   <div class="grid-container display-flex flex-align-center hero-content position-relative z-100">
     <div class="grid-row grid-gap-lg">
-      <div class="grid-col-12 tablet-lg:grid-col-7 hero-text margin-top-1 tablet-lg:margin-top-0 tablet-lg:padding-y-15">
-        <h1 class="text-bold text-primary-darker margin-bottom-2">
+      <div class="grid-col-12 tablet:grid-col-9 desktop:grid-col-7 hero-text margin-top-2 tablet:margin-bottom-1 desktop:padding-bottom-15 desktop:padding-top-8">
+        <h1 class="text-bold text-primary-darker margin-bottom-2 margin-top-0 desktop:margin-top-6">
           Serving The Largest<br /> Integrated Health Care System
         </h1>
         <p class="text-myriad margin-bottom-4 display-flex subtitle">
@@ -312,12 +312,13 @@
       </div>
     </div>
   </div>
-  <div class="hero-image-wrapper padding-x-2 tablet-lg:padding-x-0 margin-top-6 tablet-lg:margin-top-0">
-    <img
-      src="/assets/img/home/simlearn-hero.webp"
-      alt="Person wearing VR headset in a training room"
-      class="hero-image width-full height-full"
-    />
+  <div class="hero-image-wrapper padding-x-2 tablet:padding-x-0 margin-top-6 tablet:margin-top-0">
+    <picture>
+      <source media="(max-width: 640px)" srcset="/assets/img/home/simlearn-hero-mobile.webp" />
+      <source media="(max-width: 999px)" srcset="/assets/img/home/simlearn-hero-tablet.webp" />
+      <source media="(min-width: 1000px)" srcset="/assets/img/home/simlearn-hero.webp" />
+      <img src="/assets/img/home/simlearn-hero.webp" alt="Person wearing VR headset in a training room" class="hero-image width-full height-full" />
+    </picture>
   </div>
 </section>
 
@@ -392,7 +393,7 @@
           <img
           src="/assets/img/home/training.webp"
           alt="Health care professionals conducting simulation training"
-          class="radius-lg shadow-4 position-relative z-100 margin-top-10 img-training"
+          class="radius-lg shadow-4 position-relative z-100 margin-top-10 tablet:margin-top-15 tablet:padding-top-10 img-training"
         />
         </div>
       </div>
@@ -431,7 +432,7 @@
     </div>
   </div>
 </section>
-            <section class="usa-section display-flex flex-align-stretch position-relative img-card-section padding-y-0 overflow-hidden bg-white">
+            <section class="usa-section display-flex flex-align-stretch position-relative img-card-section padding-y-5 tablet:padding-y-7 desktop:padding-y-0 overflow-hidden bg-white">
   <div class="grid-container margin-x-0 tablet:margin-x-0 desktop:margin-x-4 padding-x-2 desktop:padding-x-4 width-full desktop:width-auto">
     <div class="grid-row grid-gap-lg height-full flex-align-center">
       <div class="grid-col-12 flex-align-center">
@@ -441,28 +442,28 @@
             <ul class="usa-list usa-list--unstyled list-buttons">
 
               <li class="border-bottom">
-                <a href="/contact-us" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/contact-us" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">I want to visit the National SimVET Center</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="border-bottom">
-                <a href="/portfolio/aco/" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/portfolio/aco/" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">I want to redesign my VA space</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="border-bottom">
-                <a href="/portfolio/lm" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/portfolio/lm" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">Looking for a SimLEARN/SLICE/REdI Near Me</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="">
-                <a href="/portfolio/simvet/" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/portfolio/simvet/" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">I’m looking for new innovations</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
@@ -472,15 +473,18 @@
       </div>
     </div>
   </div>
-  <div class="img-cover-container margin-x-2 desktop:margin-x-0 margin-y-6 desktop:margin-y-0 overflow-hidden">
-    <img
+  <div class="img-cover-container margin-x-2 desktop:margin-x-0 margin-top-5 margin-bottom-3 tablet:margin-bottom-3 desktop:margin-y-0 overflow-hidden">
+    <picture>
+      <source media="(max-width: 1023px)" srcset="/assets/img/home/facility-tablet.webp" />
+      <source media="(min-width: 1024px)" srcset="/assets/img/home/facility.webp" />
+      <img 
       src="/assets/img/home/facility.webp"
-      alt="Healthcare professionals in a simulation lab"
-      class="width-full height-full img-cover"
-    />
+        alt="Healthcare professionals in a simulation lab"
+        class="width-full height-full img-cover" />
+    </picture>
   </div>
 </section>
-            <section class="usa-section display-flex flex-align-stretch position-relative img-card-section padding-y-5 tablet:padding-y-0 bg-base-lightest overflow-hidden">
+            <section class="usa-section display-flex flex-align-stretch position-relative img-card-section padding-y-5 tablet:padding-y-7 desktop:padding-y-0 bg-base-lightest overflow-hidden">
   <div class="grid-container tablet:margin-x-0 desktop:margin-x-4 padding-x-2 desktop:padding-x-4 width-full desktop:width-auto">
     <div class="grid-row grid-gap-lg height-full flex-align-center">
       <div class="grid-col-12 flex-align-center">
@@ -490,28 +494,28 @@
             <ul class="usa-list usa-list--unstyled list-buttons">
 
               <li class="border-bottom">
-                <a href="/portfolio/simvet/" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/portfolio/simvet/" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">More Information on the National SimVET Center</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="border-bottom">
-                <a href="/portfolio/simlearn/" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/portfolio/simlearn/" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">SimLEARN Leadership</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="border-bottom">
-                <a href="/contact/" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/contact/" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">How can I get involved with SimLEARN?</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="">
-                <a href="/about-us" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/about-us" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">What is Simulation?</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
@@ -521,18 +525,21 @@
       </div>
     </div>
   </div>
-  <div class="img-cover-container margin-x-2 desktop:margin-x-0 margin-y-6 desktop:margin-y-0 overflow-hidden">
-    <img
+  <div class="img-cover-container margin-x-2 desktop:margin-x-0 margin-top-5 margin-bottom-3 tablet:margin-bottom-3 desktop:margin-y-0 overflow-hidden">
+    <picture>
+      <source media="(max-width: 1023px)" srcset="/assets/img/home/vr-training-tablet.webp" />
+      <source media="(min-width: 1024px)" srcset="/assets/img/home/vr-training.webp" />
+      <img 
       src="/assets/img/home/vr-training.webp"
-      alt="Healthcare professionals in a simulation lab"
-      class="width-full height-full img-cover"
-    />
+      alt="People using vr headsets looking at a monitor"
+        class="width-full height-full img-cover" />
+    </picture>
   </div>
 </section>
 
 
 
-            <section class="usa-section display-flex flex-align-stretch position-relative img-card-section padding-y-5 tablet:padding-y-0 bg-white overflow-hidden">
+            <section class="usa-section display-flex flex-align-stretch position-relative img-card-section padding-y-5 tablet:padding-y-7 desktop:padding-y-0 bg-white overflow-hidden">
   <div class="grid-container tablet:margin-x-0 desktop:margin-x-4 padding-x-2 desktop:padding-x-4 width-full desktop:width-auto">
     <div class="grid-row grid-gap-lg height-full flex-align-center">
       <div class="grid-col-12 flex-align-center">
@@ -542,28 +549,28 @@
             <ul class="usa-list usa-list--unstyled list-buttons">
 
               <li class="border-bottom">
-                <a href="/about-us/" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/about-us/" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">I don't know what I'm looking for, help me choose</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="border-bottom">
-                <a href="/portfolio/redi/" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/portfolio/redi/" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">National Training Center for Resuscitation Education</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="border-bottom">
-                <a href="/portfolio/aco/" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/portfolio/aco/" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">Simulation-based Hospital Design Testing (SbHDT)</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
               </li>
 
               <li class="">
-                <a href="/course-catalog" class="btn-text-gradient display-flex flex-justify-between text-no-underline text-bold">
+                <a href="/course-catalog" class="btn-text-gradient position-relative display-flex flex-justify-between text-no-underline text-bold">
                   <span class="text-black">Pre/Post Toolbox Course</span>
                   <img src="/assets/img/icons/right-arrow.svg" alt="right arrow" class="margin-left-auto" />
                 </a>
@@ -573,12 +580,15 @@
       </div>
     </div>
   </div>
-  <div class="img-cover-container margin-x-2 desktop:margin-x-0 margin-y-6 desktop:margin-y-0 overflow-hidden">
-    <img
+  <div class="img-cover-container margin-x-2 desktop:margin-x-0 margin-top-5 margin-bottom-3 tablet:margin-bottom-3 desktop:margin-y-0 overflow-hidden">
+    <picture>
+      <source media="(max-width: 1023px)" srcset="/assets/img/home/conference-group-tablet.webp" />
+      <source media="(min-width: 1024px)" srcset="/assets/img/home/conference-group.webp" />
+      <img 
       src="/assets/img/home/conference-group.webp"
       alt="Attendees listening to a presentation in a classroom setting"
-      class="width-full height-full img-cover"
-    />
+        class="width-full height-full img-cover" />
+    </picture>
   </div>
 </section>
 
