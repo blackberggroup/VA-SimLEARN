@@ -17,23 +17,24 @@
         <img src="{% assetPath %}assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
       </button>
       <ul class="usa-nav__primary usa-accordion">
+
+      {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
+      {% assign fullCurrentPageUrl = cleanAssetPath | append: currentPageUrl | replace: "//", "/" %}
+
         {% for link in navigation.primaryLinks %}
           <li class="usa-nav__primary-item">
             {% if link.submenu %}
               <button
                 type="button"
-                class="usa-accordion__button usa-nav__link"
+                class="usa-accordion__button usa-nav__link {% if fullCurrentPageUrl == link.url %}usa-current{% endif %}"
                 aria-expanded="false"
                 aria-controls="section-{{ forloop.index }}"
               >
                 <span>{{ link.label }}</span>
+                <span class="menu-indicator"></span>
               </button>
               <ul id="section-{{ forloop.index }}" class="usa-nav__submenu">
                 {% for sublink in link.submenu %}
-
-                {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
-                  {% assign fullCurrentPageUrl = cleanAssetPath | append: currentPageUrl | replace: "//", "/" %}
-
                   <li class="usa-nav__submenu-item">
                     <a href="{{ assetPath }}{{ sublink.url }}" class="{% if fullCurrentPageUrl == sublink.url %}usa-current{% endif %}">
                       <span>{{ sublink.label }}</span>
@@ -49,6 +50,7 @@
                 aria-controls="mega-menu-{{ forloop.index }}"
               >
                 <span>{{ link.label }}</span>
+                <span class="menu-indicator"></span>
               </button>
               <div
                 id="mega-menu-{{ forloop.index }}"
@@ -71,9 +73,6 @@
                 </div>
               </div>
             {% else %}
-
-            {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
-            {% assign fullCurrentPageUrl = cleanAssetPath | append: currentPageUrl | replace: "//", "/" %}
 
             <a href="{{ assetPath }}{{ link.url }}" class="usa-nav-link {% if fullCurrentPageUrl == link.url %}usa-current{% endif %}">
               <span>{{ link.label }}</span>

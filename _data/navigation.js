@@ -9,6 +9,7 @@ module.exports = {
     },
     {
       label: "About Us",
+      url: `${pathPrefix}about-us/`,
       submenu: [
         { label: "About SimLEARN", url: `${pathPrefix}about-us/` },
         { label: "SimLEARN Leadership Team", url: `${pathPrefix}about-us/simlearn-leadership/` },
@@ -21,11 +22,12 @@ module.exports = {
     },
     {
       label: "Portfolios",
+      url: `${pathPrefix}portfolio/`,
       megaMenu: [
         {
-          title: "SimLEARN",
+          title: "SimVET",
           description: "SimVET empowers the VHA’s modernization by rigorously testing and validating new healthcare technologies to enhance care and reduce risks.",
-          url: `${pathPrefix}portfolio/simlearn/`,
+          url: `${pathPrefix}portfolio/simvet/`,
           icon: `${pathPrefix}assets/img/menu/simvet-menu-icon.webp`,
         },
         {
