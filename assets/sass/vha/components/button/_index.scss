@@ -45,6 +45,7 @@
 
 .btn-text-gradient {
   padding: 24px;
+  transition: color .3s ease, box-shadow .3s ease;
 
   img {
     filter: invert(1) brightness(2);
@@ -60,7 +61,7 @@
     background: linear-gradient(270deg, $theme-primary-darkest, $theme-primary);
     background-size: 150% 150%;
     background-position: 0% 50%;
-    transition: background-position 2s linear;
+    transition: background-position 2s linear, opacity 0.3s ease;
     border-radius: 6px;
     opacity: 0;
   }
