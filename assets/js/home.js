@@ -104,6 +104,18 @@ const imgCardSections = document.querySelectorAll('.img-card-section');
       });
     }
   });
+
+  ScrollTrigger.matchMedia({
+    "(max-width: 1023px)": function() {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "bottom bottom",
+        end: "bottom top",
+        pin: true,
+        pinSpacing: false
+      });
+    }
+  });
   
   const img = section.querySelector('.img-cover-container img');
   if (img) {
