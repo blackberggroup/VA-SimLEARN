@@ -21,7 +21,7 @@ jobs:
       - name: List Changed Files
         id: changed_files
         run: |
-          # Get a list of changed files between the merge commit (HEAD) and its parent (HEAD^)
+          # List changed files between the merge commit (HEAD) and its parent (HEAD^)
           CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)
           echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_OUTPUT
           echo "Found changed files:"
@@ -46,10 +46,12 @@ jobs:
           # Create the zip file.
           if [ ${#valid_files[@]} -eq 0 ]; then
             echo "No valid changed files found; creating an empty zip."
-            zip changed_files.zip --quiet --junk-paths --filesync /dev/null
+            zip changed_files.zip --quiet --junk-paths --filesync /dev/null || true
           else
-            zip changed_files.zip "${valid_files[@]}"
+            # Run zip; if it returns a nonzero exit code, check if the file was created.
+            zip changed_files.zip "${valid_files[@]}" || ( [ -f changed_files.zip ] || exit 1 )
           fi
+          
           ls -l changed_files.zip
 
       - name: Send ZIP to Slack using External Upload
