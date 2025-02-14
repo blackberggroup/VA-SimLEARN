@@ -1,7 +1,7 @@
 <!-- BEGIN USWDS Header, extended -->
 <div class="usa-overlay"></div>
 <header class="usa-header usa-header--basic usa-header--megamenu usa-header--simlearn position-relative z-top">
-  <div class="usa-nav-container">
+  <div class="usa-nav-container position-relative">
     <div class="usa-navbar">
       <div class="usa-logo">
         <em class="usa-logo__text">
@@ -12,28 +12,29 @@
       </div>
       <button type="button" class="usa-menu-btn">Menu</button>
     </div>
-    <nav aria-label="Primary navigation" class="usa-nav">
+    <nav aria-label="Primary navigation" class="usa-nav" data-lenis-prevent>
       <button type="button" class="usa-nav__close">
         <img src="{% assetPath %}assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
       </button>
       <ul class="usa-nav__primary usa-accordion">
+
+      {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
+      {% assign fullCurrentPageUrl = cleanAssetPath | append: currentPageUrl | replace: "//", "/" %}
+
         {% for link in navigation.primaryLinks %}
           <li class="usa-nav__primary-item">
             {% if link.submenu %}
               <button
                 type="button"
-                class="usa-accordion__button usa-nav__link"
+                class="usa-accordion__button usa-nav__link {% if fullCurrentPageUrl == link.url %}usa-current{% endif %}"
                 aria-expanded="false"
                 aria-controls="section-{{ forloop.index }}"
               >
                 <span>{{ link.label }}</span>
+                <span class="menu-indicator"></span>
               </button>
               <ul id="section-{{ forloop.index }}" class="usa-nav__submenu">
                 {% for sublink in link.submenu %}
-
-                {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
-                  {% assign fullCurrentPageUrl = cleanAssetPath | append: currentPageUrl | replace: "//", "/" %}
-
                   <li class="usa-nav__submenu-item">
                     <a href="{{ assetPath }}{{ sublink.url }}" class="{% if fullCurrentPageUrl == sublink.url %}usa-current{% endif %}">
                       <span>{{ sublink.label }}</span>
@@ -49,27 +50,29 @@
                 aria-controls="mega-menu-{{ forloop.index }}"
               >
                 <span>{{ link.label }}</span>
+                <span class="menu-indicator"></span>
               </button>
               <div
                 id="mega-menu-{{ forloop.index }}"
                 class="usa-nav__submenu usa-megamenu padding-0"
               >
-                <div class="grid-row grid-gap-4">
+                <div class="grid-row grid-gap-4 padding-2 desktop:padding-2">
                   {% for item in link.megaMenu %}
                     <div class="grid-col-12 desktop:grid-col-4">
-                      <div class="usa-nav__portfolio padding-2 desktop:padding-4">
-                        <h3 class="usa-nav__portfolio-title">{{ item.title }}</h3>
-                        <p class="usa-nav__portfolio-subtitle margin-top-0">{{ item.description }}</p>
-                        <a href="{{ assetPath }}{{ item.url }}" class="usa-link" aria-label="View more information about {{ item.title }}">View {{ item.title }}</a>
+                      <div class="usa-nav__portfolio">
+                          <a href="{{ assetPath }}{{ item.url }}" class="display-flex usa-link margin-bottom-1 desktop:margin-bottom-0" aria-label="View more information about {{ item.title }}">
+                            <img src="{{item.icon}}" class="display-flex flex-align-self-start margin-right-2 mega-menu-icon" alt="{{item.ittle}} menu icon" />
+                            <div class="display-flex flex-column">
+                              <h3 class="usa-nav__portfolio-title">{{ item.title }}</h3>
+                              <p class="usa-nav__portfolio-subtitle margin-top-1 margin-bottom-0 text-base-darker">{{ item.description }}</p>
+                            </div>
+                          </a>
                       </div>
                     </div>
                   {% endfor %}
                 </div>
               </div>
             {% else %}
-
-            {% capture cleanAssetPath %}{% assetPath %}{% endcapture %}
-            {% assign fullCurrentPageUrl = cleanAssetPath | append: currentPageUrl | replace: "//", "/" %}
 
             <a href="{{ assetPath }}{{ link.url }}" class="usa-nav-link {% if fullCurrentPageUrl == link.url %}usa-current{% endif %}">
               <span>{{ link.label }}</span>

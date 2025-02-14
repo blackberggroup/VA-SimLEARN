@@ -13,12 +13,52 @@
             }
 
             @include at-media(desktop) {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
+        }
 
+        &-subtitle {
+            font-size: 14px;
+            line-height: 1.5;
         }
     }
 
+}
+
+.usa-megamenu {
+    a {
+        transition: all 0.3s ease;
+        border-radius: 6px;
+        
+        &:hover {
+            background: $theme-base-lightest;
+        }
+    }
+
+    a:not(.usa-button) {
+        padding: 8px;
+        display: flex;
+
+        @include at-media(desktop) {
+            padding: 16px;
+        }
+    }
+
+    .usa-nav__primary a:not(.usa-button) {
+        display: flex;
+    }
+
+    .usa-nav__submenu a:not(.usa-button) {
+        padding: 8px;
+    }
+
+    .mega-menu-icon {
+        width: 32px;
+
+        @include at-media(desktop) {
+            width: 40px;
+        }
+    }
 }
 
 .usa-megamenu.usa-nav__submenu {

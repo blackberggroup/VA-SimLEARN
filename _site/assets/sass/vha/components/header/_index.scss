@@ -6,6 +6,16 @@
 
     .usa-nav {
       padding-bottom: 0;
+      max-width: 100%;
+      width: 100%;
+
+      @include at-media(tablet) {
+        max-width: 485px;
+      }
+
+      @include at-media(desktop) {
+        max-width: 100%;
+      }
     }
 }
 

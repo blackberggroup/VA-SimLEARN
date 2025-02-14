@@ -94,7 +94,7 @@
       <!-- BEGIN USWDS Header, extended -->
 <div class="usa-overlay"></div>
 <header class="usa-header usa-header--basic usa-header--megamenu usa-header--simlearn position-relative z-top">
-  <div class="usa-nav-container">
+  <div class="usa-nav-container position-relative">
     <div class="usa-navbar">
       <div class="usa-logo">
         <em class="usa-logo__text">
@@ -105,16 +105,17 @@
       </div>
       <button type="button" class="usa-menu-btn">Menu</button>
     </div>
-    <nav aria-label="Primary navigation" class="usa-nav">
+    <nav aria-label="Primary navigation" class="usa-nav" data-lenis-prevent>
       <button type="button" class="usa-nav__close">
         <img src="/assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
       </button>
       <ul class="usa-nav__primary usa-accordion">
+
+      
+      
+
         
           <li class="usa-nav__primary-item">
-            
-
-            
             
 
             <a href="/" class="usa-nav-link ">
@@ -128,28 +129,21 @@
             
               <button
                 type="button"
-                class="usa-accordion__button usa-nav__link"
+                class="usa-accordion__button usa-nav__link "
                 aria-expanded="false"
                 aria-controls="section-2"
               >
                 <span>About Us</span>
+                <span class="menu-indicator"></span>
               </button>
               <ul id="section-2" class="usa-nav__submenu">
                 
-
-                
-                  
-
                   <li class="usa-nav__submenu-item">
                     <a href="/about-us/" class="">
                       <span>About SimLEARN</span>
                     </a>
                   </li>
                 
-
-                
-                  
-
                   <li class="usa-nav__submenu-item">
                     <a href="/about-us/simlearn-leadership/" class="usa-current">
                       <span>SimLEARN Leadership Team</span>
@@ -161,9 +155,6 @@
           </li>
         
           <li class="usa-nav__primary-item">
-            
-
-            
             
 
             <a href="/news-and-media/" class="usa-nav-link ">
@@ -182,58 +173,83 @@
                 aria-controls="mega-menu-4"
               >
                 <span>Portfolios</span>
+                <span class="menu-indicator"></span>
               </button>
               <div
                 id="mega-menu-4"
                 class="usa-nav__submenu usa-megamenu padding-0"
               >
-                <div class="grid-row grid-gap-4">
+                <div class="grid-row grid-gap-4 padding-2 desktop:padding-2">
                   
                     <div class="grid-col-12 desktop:grid-col-4">
-                      <div class="usa-nav__portfolio padding-2 desktop:padding-4">
-                        <h3 class="usa-nav__portfolio-title">SimLEARN</h3>
-                        <p class="usa-nav__portfolio-subtitle margin-top-0">Simulation Validation, Evaluation, and Testing</p>
-                        <a href="/portfolio/simlearn/" class="usa-link" aria-label="View more information about SimLEARN">View SimLEARN</a>
+                      <div class="usa-nav__portfolio">
+                          <a href="/portfolio/simvet/" class="display-flex usa-link margin-bottom-1 desktop:margin-bottom-0" aria-label="View more information about SimVET">
+                            <img src="/assets/img/menu/simvet-menu-icon.webp" class="display-flex flex-align-self-start margin-right-2 mega-menu-icon" alt=" menu icon" />
+                            <div class="display-flex flex-column">
+                              <h3 class="usa-nav__portfolio-title">SimVET</h3>
+                              <p class="usa-nav__portfolio-subtitle margin-top-1 margin-bottom-0 text-base-darker">SimVET empowers the VHA’s modernization by rigorously testing and validating new healthcare technologies to enhance care and reduce risks.</p>
+                            </div>
+                          </a>
                       </div>
                     </div>
                   
                     <div class="grid-col-12 desktop:grid-col-4">
-                      <div class="usa-nav__portfolio padding-2 desktop:padding-4">
-                        <h3 class="usa-nav__portfolio-title">REdI</h3>
-                        <p class="usa-nav__portfolio-subtitle margin-top-0">Resuscitation Education and Innovation</p>
-                        <a href="/portfolio/redi/" class="usa-link" aria-label="View more information about REdI">View REdI</a>
+                      <div class="usa-nav__portfolio">
+                          <a href="/portfolio/redi/" class="display-flex usa-link margin-bottom-1 desktop:margin-bottom-0" aria-label="View more information about REdI">
+                            <img src="/assets/img/menu/redi-menu-icon.webp" class="display-flex flex-align-self-start margin-right-2 mega-menu-icon" alt=" menu icon" />
+                            <div class="display-flex flex-column">
+                              <h3 class="usa-nav__portfolio-title">REdI</h3>
+                              <p class="usa-nav__portfolio-subtitle margin-top-1 margin-bottom-0 text-base-darker">REdI elevates resuscitation training by delivering standardized, simulation-based education that improves team performance and patient outcomes.</p>
+                            </div>
+                          </a>
                       </div>
                     </div>
                   
                     <div class="grid-col-12 desktop:grid-col-4">
-                      <div class="usa-nav__portfolio padding-2 desktop:padding-4">
-                        <h3 class="usa-nav__portfolio-title">LM</h3>
-                        <p class="usa-nav__portfolio-subtitle margin-top-0">Learning Management</p>
-                        <a href="/portfolio/lm/" class="usa-link" aria-label="View more information about LM">View LM</a>
+                      <div class="usa-nav__portfolio">
+                          <a href="/portfolio/lm/" class="display-flex usa-link margin-bottom-1 desktop:margin-bottom-0" aria-label="View more information about LM">
+                            <img src="/assets/img/menu/lm-menu-icon.webp" class="display-flex flex-align-self-start margin-right-2 mega-menu-icon" alt=" menu icon" />
+                            <div class="display-flex flex-column">
+                              <h3 class="usa-nav__portfolio-title">LM</h3>
+                              <p class="usa-nav__portfolio-subtitle margin-top-1 margin-bottom-0 text-base-darker">LM transforms clinical simulation training with innovative, cost-effective educational solutions that boost Veteran outcomes and optimize clinician time.</p>
+                            </div>
+                          </a>
                       </div>
                     </div>
                   
                     <div class="grid-col-12 desktop:grid-col-4">
-                      <div class="usa-nav__portfolio padding-2 desktop:padding-4">
-                        <h3 class="usa-nav__portfolio-title">ACO</h3>
-                        <p class="usa-nav__portfolio-subtitle margin-top-0">Assessment, Collaboration and Outreach</p>
-                        <a href="/portfolio/aco/" class="usa-link" aria-label="View more information about ACO">View ACO</a>
+                      <div class="usa-nav__portfolio">
+                          <a href="/portfolio/aco/" class="display-flex usa-link margin-bottom-1 desktop:margin-bottom-0" aria-label="View more information about ACO">
+                            <img src="/assets/img/menu/aco-menu-icon.webp" class="display-flex flex-align-self-start margin-right-2 mega-menu-icon" alt=" menu icon" />
+                            <div class="display-flex flex-column">
+                              <h3 class="usa-nav__portfolio-title">ACO</h3>
+                              <p class="usa-nav__portfolio-subtitle margin-top-1 margin-bottom-0 text-base-darker">ACO drives innovation in Veteran care by leveraging simulation-based training and collaborative practices to optimize resources and support hospital activations.</p>
+                            </div>
+                          </a>
                       </div>
                     </div>
                   
                     <div class="grid-col-12 desktop:grid-col-4">
-                      <div class="usa-nav__portfolio padding-2 desktop:padding-4">
-                        <h3 class="usa-nav__portfolio-title">CTE</h3>
-                        <p class="usa-nav__portfolio-subtitle margin-top-0">Clinical Training and Engagement</p>
-                        <a href="/portfolio/cte/" class="usa-link" aria-label="View more information about CTE">View CTE</a>
+                      <div class="usa-nav__portfolio">
+                          <a href="/portfolio/cte/" class="display-flex usa-link margin-bottom-1 desktop:margin-bottom-0" aria-label="View more information about CTE">
+                            <img src="/assets/img/menu/cte-menu-icon.webp" class="display-flex flex-align-self-start margin-right-2 mega-menu-icon" alt=" menu icon" />
+                            <div class="display-flex flex-column">
+                              <h3 class="usa-nav__portfolio-title">CTE</h3>
+                              <p class="usa-nav__portfolio-subtitle margin-top-1 margin-bottom-0 text-base-darker">CTE enhances clinical practice and Veteran safety by providing expert simulation training and fostering interprofessional collaboration.</p>
+                            </div>
+                          </a>
                       </div>
                     </div>
                   
                     <div class="grid-col-12 desktop:grid-col-4">
-                      <div class="usa-nav__portfolio padding-2 desktop:padding-4">
-                        <h3 class="usa-nav__portfolio-title">SO</h3>
-                        <p class="usa-nav__portfolio-subtitle margin-top-0">Support Operations</p>
-                        <a href="/portfolio/so/" class="usa-link" aria-label="View more information about SO">View SO</a>
+                      <div class="usa-nav__portfolio">
+                          <a href="/portfolio/so/" class="display-flex usa-link margin-bottom-1 desktop:margin-bottom-0" aria-label="View more information about SO">
+                            <img src="/assets/img/menu/so-menu-icon.webp" class="display-flex flex-align-self-start margin-right-2 mega-menu-icon" alt=" menu icon" />
+                            <div class="display-flex flex-column">
+                              <h3 class="usa-nav__portfolio-title">SO</h3>
+                              <p class="usa-nav__portfolio-subtitle margin-top-1 margin-bottom-0 text-base-darker">SO ensures a seamless and safe training environment by expertly coordinating activities, maintaining equipment safety, and managing facility operations.</p>
+                            </div>
+                          </a>
                       </div>
                     </div>
                   
@@ -245,9 +261,6 @@
           <li class="usa-nav__primary-item">
             
 
-            
-            
-
             <a href="/course-catalog/" class="usa-nav-link ">
               <span>Course Catalog</span>
             </a>
@@ -256,9 +269,6 @@
           </li>
         
           <li class="usa-nav__primary-item">
-            
-
-            
             
 
             <a href="/contact-us/" class="usa-nav-link ">
