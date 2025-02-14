@@ -32,56 +32,39 @@ document.addEventListener('DOMContentLoaded', () => {
       animation: null
     }
   ];
+  
+  animations.forEach((anim) => {
 
-  animations.forEach(anim => {
     anim.animation = lottie.loadAnimation({
       container: document.getElementById(anim.id),
       renderer: 'svg',
-      loop: true,
+      loop: false,
       autoplay: false,
-      path: anim.path
+      path: anim.path,
     });
-
+  
     anim.animation.addEventListener('DOMLoaded', () => {
-      const svgElement = document.getElementById(anim.id).querySelector('svg');
+      const svgElement = document.getElementById(anim.id)?.querySelector('svg');
       if (svgElement) {
         const paths = svgElement.querySelectorAll('path');
-        paths.forEach(path => {
+        paths.forEach((path) => {
           const strokeColor = path.getAttribute('stroke');
           if (strokeColor === 'rgb(51,204,204)') {
             path.setAttribute('stroke', 'rgb(0, 80, 216)');
           }
           if (strokeColor === 'rgb(0,0,0)') {
-            path.setAttribute('stroke', 'rgb(255,255, 255)');
+            path.setAttribute('stroke', 'rgb(255,255,255)');
           }
         });
       }
     });
-  });
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const animation = animations.find(anim => anim.id === entry.target.id);
-          if (animation) {
-            animation.animation.play();
-          }
-        } else {
-          const animation = animations.find(anim => anim.id === entry.target.id);
-          if (animation) {
-            animation.animation.stop();
-          }
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  animations.forEach(anim => {
+  
     const container = document.getElementById(anim.id);
-    observer.observe(container);
+    container.addEventListener('mouseenter', () => {
+      anim.animation.goToAndPlay(0, true);
+    });
   });
+  
 
     gsap.to('#mouse-wheel', {
       y: 10, 
@@ -108,16 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const imgCardSections = document.querySelectorAll('.img-card-section');
 
-imgCardSections.forEach((section) => {
+ imgCardSections.forEach((section) => {
 
-  ScrollTrigger.create({
-    trigger: section,
-    start: "bottom 50%",
-    end: "bottom top",
-    pin: true,
-    pinSpacing: false, 
+  ScrollTrigger.matchMedia({
+    "(min-width: 1024px)": function() {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: "bottom top",
+        pin: true,
+        pinSpacing: false
+      });
+    }
   });
-
+  
   const img = section.querySelector('.img-cover-container img');
   if (img) {
     gsap.fromTo(

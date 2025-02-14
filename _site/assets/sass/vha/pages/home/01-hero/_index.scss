@@ -9,7 +9,7 @@
   .hero-image {
     object-fit: cover; 
     border-radius: 8px;
-    object-position: right;
+    object-position: top;
   }
 
   .subtitle {
@@ -22,8 +22,14 @@
     font-size: 32px;
   }
 
+  @include at-media(mobile-lg) {
+    .hero-image-wrapper {
+      height: 335px;
+    }
+  }
 
-  @include at-media(tablet-lg) {
+
+  @include at-media(tablet) {
     .hero-image-wrapper {
       position: absolute;
       top: 0;
@@ -34,8 +40,10 @@
       border-radius: 0;
       border-bottom-left-radius: 8px;
     }
+
     .hero-image {
-      object-position: right;
+      border-radius: 0;
+      border-bottom-left-radius: 8px;
     }
 
     h1 {
