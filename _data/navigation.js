@@ -68,7 +68,7 @@ module.exports = {
       submenu: null 
     },
     { 
-      label: "Contact Us", 
+      label: "Contact", 
       url: `${pathPrefix}contact-us/`, 
       submenu: null 
     },    
