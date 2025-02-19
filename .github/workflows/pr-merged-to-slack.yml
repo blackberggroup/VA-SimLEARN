@@ -1,0 +1,100 @@
+name: "PR Merged: Zip Changed Files & Notify Slack (External Upload)"
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  notify-slack:
+    # Run only if the PR was merged into the main branch.
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code at Merge Commit
+        uses: actions/checkout@v3
+        with:
+          # Fetch at least two commits so that HEAD^ exists.
+          fetch-depth: 2
+          ref: ${{ github.sha }}
+
+      - name: List Changed Files
+        id: changed_files
+        run: |
+          # List changed files between the merge commit (HEAD) and its parent (HEAD^)
+          CHANGED_FILES=$(git diff HEAD^ HEAD --name-only)
+          echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_OUTPUT
+          echo "Found changed files:"
+          echo "$CHANGED_FILES"
+
+      - name: Zip Changed Files
+        id: zip
+        run: |
+          # Convert the newline-separated list into an array.
+          IFS=$'\n' read -rd '' -a files <<< "${{ steps.changed_files.outputs.CHANGED_FILES }}"
+          
+          # Filter out files that do not exist.
+          valid_files=()
+          for f in "${files[@]}"; do
+            if [ -e "$f" ]; then
+              valid_files+=("$f")
+            else
+              echo "Skipping missing file: $f"
+            fi
+          done
+          
+          # Create the zip file.
+          if [ ${#valid_files[@]} -eq 0 ]; then
+            echo "No valid changed files found; creating an empty zip."
+            zip changed_files.zip --quiet --junk-paths --filesync /dev/null || true
+          else
+            # Run zip; if it returns a nonzero exit code, check if the file was created.
+            zip changed_files.zip "${valid_files[@]}" || ( [ -f changed_files.zip ] || exit 1 )
+          fi
+          
+          ls -l changed_files.zip
+
+      - name: Send ZIP to Slack using External Upload
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL_ID }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          # Get the file size of the ZIP file.
+          FILE_SIZE=$(stat -c%s "changed_files.zip")
+          echo "File size: $FILE_SIZE bytes"
+          
+          # Step 1: Request an upload URL from Slack.
+          RESPONSE=$(curl -s -X POST https://slack.com/api/files.getUploadURLExternal \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data "{\"filename\": \"changed_files.zip\", \"filesize\": $FILE_SIZE, \"filetype\": \"zip\", \"title\": \"Changed Files from PR #$PR_NUMBER\"}")
+          echo "Response from getUploadURLExternal: $RESPONSE"
+          
+          UPLOAD_URL=$(echo "$RESPONSE" | jq -r '.upload_url')
+          FILE_ID=$(echo "$RESPONSE" | jq -r '.file_id')
+          
+          if [ -z "$UPLOAD_URL" ] || [ "$UPLOAD_URL" = "null" ]; then
+            echo "Error: No upload URL received."
+            exit 1
+          fi
+          if [ -z "$FILE_ID" ] || [ "$FILE_ID" = "null" ]; then
+            echo "Error: No file ID received."
+            exit 1
+          fi
+          
+          echo "Upload URL: $UPLOAD_URL"
+          echo "File ID: $FILE_ID"
+          
+          # Step 2: Upload the file binary to the external upload URL.
+          UPLOAD_RESULT=$(curl -s -X PUT "$UPLOAD_URL" \
+            -H "Content-Type: application/zip" \
+            --data-binary @changed_files.zip)
+          echo "Result from file upload: $UPLOAD_RESULT"
+          
+          # Step 3: Complete the upload so that the file appears in Slack.
+          COMPLETE_RESPONSE=$(curl -s -X POST https://slack.com/api/files.completeUploadExternal \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data "{\"external_id\": \"$FILE_ID\", \"channels\": \"$SLACK_CHANNEL\", \"initial_comment\": \"PR #$PR_NUMBER merged into main. Attached are the changed files.\", \"title\": \"Changed Files\"}")
+          echo "Response from completeUploadExternal: $COMPLETE_RESPONSE"
